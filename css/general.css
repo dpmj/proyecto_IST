@@ -1,0 +1,301 @@
+/* ESTILOS GENERALES Y BODY */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, Helvetica, sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 930px;
+    box-sizing: border-box;
+    background-color: none;
+    background-image: url("../img/background/example.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+a {
+    text-decoration: none;
+    color: mediumblue;
+}
+
+
+/* HEADER */
+
+header.titulo_principal_flex {  /* Contenedor flex del header */
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;  /* Colocado por encima de otros contenidos */
+    background-color: rgba(255,255,255,0.7);  /* Semitransparente */
+    margin: 0;
+    padding: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex; /* Flex */
+    flex-direction: row;  /* Lista */
+    align-items: center;
+    justify-content: center; /* Centrado */
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.7);  /* Efecto de sombra */
+    border: none;
+    backdrop-filter: blur(12px);  /* Efecto de desenfoque de fondo */
+}
+
+header.titulo_principal_flex h1 {  /* Estilo del título de la página */
+    font-size: 25px;
+}
+
+a#logo {  /* logotipo, cuadrado */
+    height: 80px;
+    width: 80px;
+}
+
+a#logo img {  /* Imagen del logotipo */
+    height: 60px;
+    width: 60px;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+a#titulo_y_lema {
+    margin-left: 5px;
+    margin-right: auto;
+    color: black;
+}
+
+a#titulo_y_lema > a {
+    color: black;
+}
+
+a#titulo_y_lema  > p {
+    font-style: italic;  /* Lema en itálica */
+}
+
+a#titulo_y_lema > p::before {  /* Inserta comillas antes del lema */
+    content: '"';
+}
+
+a#titulo_y_lema > p::after {  /* Inserta comillas después del lema */
+    content: '"';
+}
+
+
+/* BARRA DE NAVEGACIÓN */
+
+nav.menu_principal {
+    background-color: none;
+    border: none;
+    margin: 0;
+}
+
+nav.menu_principal ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    text-align: center;
+}
+
+nav.menu_principal ul li {
+    display: inline-block;  /* Barra de navegación en línea */
+    box-sizing: border-box;
+    text-align: center;
+    margin-left: 15px;
+}
+
+nav.menu_principal ul li a {  /* Estilo por defecto de los botones de navegación */
+    font-size: 17px;
+    font-weight: bold;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition-duration: 0.2s;  /* Añade una ligera suavidad al cambio de color por hover */
+    border: 1px dashed black;
+}
+
+nav.menu_principal ul li a:hover {  /* Efecto pasar por encima */
+    border: 1px solid black;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0px 0px 0px 5px rgba(0,0,0,1);
+}
+
+
+nav.menu_principal ul li a[href="#"] {  /* Estilo del elemento seleccionado (página actual) */
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    cursor: not-allowed;  /* indicando que el cursor no hará nada si ya se está en la página correspondiente */
+}
+
+nav.menu_principal ul li a[href="#"]:hover {  /* Efecto al pasar por encima del elemento seleccionado (página actual) */
+    border: 1px solid black;
+    background-color: black;
+    box-shadow: inset 0px 0px 0px 5px rgba(255,255,255,1);
+}
+
+
+/* BOTÓN DE LOG IN */
+
+nav.menu_principal ul li a#login {  /* El botón de login tiene un estilo distinto para llamar la atención */
+    color: mediumblue;
+    border: 1px dashed mediumblue;
+}
+
+nav.menu_principal ul li a#login:hover {
+    border: 1px solid mediumblue;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0px 0px 0px 5px rgba(0,0,205,1);  /* Efecto de borde interior al pasar por encima */
+}
+
+
+/* CUERPO DE LA PÁGINA */
+
+div.cuerpo {  /* El cuerpo es un contenedor flex para el contenido principal y la barra aside*/
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    /* z-index: 0; De forma que esté por debajo del footer y el header y se proyecten sus sombras */
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+div.principal {  /* Donde se encuentran los artículos y otros contenidos */
+    box-sizing: border-box;
+    width: 80%;
+}
+
+
+/* BARRA LATERAL */
+
+aside {  /* Barra de navegación lateral */
+    box-sizing: border-box;
+    padding: 20px;
+    width: 20%;
+    height: inherit;
+    background-color: rgba(189, 189, 189, 0.5);
+    backdrop-filter: blur(12px);
+    /* He dejado estas unidades porque no consigo que la barra use el 100% del espacio vertical disponible */
+}
+
+aside h2 {
+    text-align: center;
+}
+
+
+/* BARRA DE NAVEGACIÓN EN EL ASIDE */
+
+aside nav.menu_lateral {
+    background-color: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+aside nav.menu_lateral ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+aside nav.menu_lateral ul li {
+    display: block;  /* Barra de navegación vertical */
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 15px;
+}
+
+aside nav.menu_lateral ul li a {
+    font-size: 16px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    padding: 15px;
+    transition-duration: 0.2s;  /* Añade una ligera suavidad al cambio de color por hover */
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+aside nav.menu_lateral ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+}
+
+
+
+/* PIE DE PÁGINA */
+
+footer {
+    color: white;
+    box-sizing: border-box;
+    background-color: rgba(29, 29, 29, 0.7);
+    backdrop-filter: blur(12px);
+    padding: 20px;
+    padding-bottom: 50px;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.7);
+
+    display: flex;  /* Contenedor flex de los créditos y logos */
+}
+
+
+footer a img {
+    height: 75px;  /* Logo de la UPV */
+}
+
+
+/* CRÉDITOS */
+
+footer div.creditos {
+    text-align: right;
+    margin-left: auto;
+}
+
+footer div.creditos hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+footer div.creditos ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+footer div.creditos ul li a {
+    line-height: 1.5;
+    color: aqua;
+}
