@@ -179,7 +179,6 @@ nav.menu_principal ul li a#login:hover {
 div.cuerpo {  /* El cuerpo es un contenedor flex para el contenido principal y la barra aside*/
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -202,7 +201,7 @@ aside {  /* Barra de navegación lateral */
     box-sizing: border-box;
     padding: 20px;
     width: 20%;
-    height: inherit;
+    height: 100%;  /* No consigo que el aside ocupe todo el espacio vertical disponible */
     background-color: rgba(189, 189, 189, 0.5);
     backdrop-filter: blur(12px);
     /* He dejado estas unidades porque no consigo que la barra use el 100% del espacio vertical disponible */
