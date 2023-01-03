@@ -1,0 +1,18 @@
+header.titulo_principal_flex {  /* Contenedor flex del header */
+    background-color: rgba(140, 180, 255, 0.7);
+}
+
+article {
+    padding: 0px;
+    /* background-color: transparent; */
+}
+
+
+article iframe#calendar_iframe_id {
+    min-height: 730px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 20px;
+    border: none;
+}
