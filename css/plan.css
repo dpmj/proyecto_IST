@@ -1,0 +1,23 @@
+.plan_list {
+	display:inline-block;
+	margin: 3px;
+	background-color:ghostwhite;
+	border: 1px solid black;
+	padding:3px;
+	
+}
+
+.plan_list > p {
+	font-weight: bold;
+}
+
+.plan{
+	background-color:white;
+	margin: 3px;
+	padding:1px;
+	box-shadow: 0px 1px 1px black;
+}
+
+.categories{
+	display: inline-block;
+}
