@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="2.2448242mm"
+   height="2.2448239mm"
+   viewBox="0 0 2.2448242 2.2448239"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="logo.png"
+   inkscape:export-xdpi="5793.2378"
+   inkscape:export-ydpi="5793.2378"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="22.627417"
+     inkscape:cx="1.1711456"
+     inkscape:cy="9.1923881"
+     inkscape:window-width="960"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid245"
+       originx="-4.1692546"
+       originy="-13.165088" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <rect
+       x="37"
+       y="9"
+       width="45"
+       height="23"
+       id="rect1124" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-4.1692546,-13.165088)">
+    <path
+       id="rect4698"
+       style="fill:#fefefe;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-opacity:1;paint-order:stroke markers fill"
+       d="m 4.1692546,13.165088 v 2.244824 H 6.4140788 V 13.958838 L 5.2916667,15.08125 4.4979167,14.2875 4.7625,14.022917 5.2916667,14.552083 6.4140788,13.429671 v -0.264583 z" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     transform="translate(-4.1692546,-13.165088)" />
+</svg>
