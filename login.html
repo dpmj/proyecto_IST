@@ -8,12 +8,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- Presentación -->
-		<title>Taskify | Calendar</title>
+		<title>Taskify | Plan</title>
 
 		<!-- Hojas de estilo -->
 		<link rel="stylesheet" type="text/css" href="css/general.css">
 		<link rel="stylesheet" type="text/css" href="css/articles.css">
-		<link rel="stylesheet" type="text/css" href="css/calendar.css">
+		<link rel="stylesheet" type="text/css" href="css/login.css">
 		
 		<!-- Importamos fuentes desde google fonts -->
 		<!-- <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@600&display=swap" rel="stylesheet"> -->
@@ -25,7 +25,7 @@
 
 		<!-- Fontawesome para los símbolos -->
 		<script src="https://kit.fontawesome.com/f7bd64aa23.js" crossorigin="anonymous"></script>
-        
+
 	
 	</head>
 
@@ -46,9 +46,9 @@
 			<!-- Menú de navegación horizontal -->
 			<nav class="menu_principal">
 				<ul><!-- Estos comentarios eliminan los espacios en blanco, que molestan en la lista de navegación
-				 --><li><a href="index.html">Tasks</a></li><!--
+				 --><li><a href="#">Tasks</a></li><!--
 				 --><li><a href="new.html">Create new</a></li><!--
-				 --><li><a href="#">Calendar</a></li><!--
+				 --><li><a href="calendar.html">Calendar</a></li><!--
 				 --><li><a href="media.html">Multimedia</a></li><!--
 				 --><li><a id=login href="login.html">Log in</a></li><!--
 				--></ul>
@@ -63,31 +63,12 @@
 
 			<!-- Contenido principal -->
 			<div class="principal">
-				<article>
-                    <iframe id="calendar_iframe_id" name="calendar_iframe_name" onload="ajustar_altura()" src="calendar_iframe.html" title="Calendario" sandbox="allow-scripts allow-same-origin"></iframe>
-                </article>
 
-                <script src="js/calendar_iframe_fix_height.js"></script>
+			
 
 		 	</div> <!-- class="principal" -->
 
 
-			<!-- Barra de navegación a la derecha -->
-			<aside>
-
-				<h2>User filter</h2>
-
-				<nav class="menu_lateral"> <!-- Barra de navegación secundaria en la barra lateral -->
-					<ul>
-						<li><a href="#">View user 1</a></li>
-						<li><a href="#">View user 2</a></li>
-						<li><a href="#">View user 3</a></li>
-						<li><a href="#">View user 4</a></li>
-						<li><a href="#">View user 5</a></li>
-					</ul>
-				</nav>
-				
-			</aside>
 
 
 		</div> <!-- class="cuerpo" -->
@@ -126,4 +107,3 @@
 	</body>
 
 </html>	
-
