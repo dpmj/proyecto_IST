@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login{
+    width: 400px;
+    height: 340px;
+    background: rgba(255, 255, 255, 0.5); 
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 100px;
+    box-shadow: 7px 13px 37px #000;
+    padding: 20px 30px;
+    color:black;
+}
+
+.login h4{
+    margin: 0;
+    text-align: center;
+    height: 40 px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid;
+    font-size: 20px;
+}
+
+.entradas {
+    width: 100%;
+    border: 1px solid;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    background: rgba(255, 255, 255, 0.49);
+    font-size: 14px;
+    
+}
+
+.btnLogin{
+    width: 80%;
+    height: 40px;
+    background:rgba(238, 165, 82, 0.856);
+    border: solid 2px rgb(233, 128, 76);
+    display: block;
+    margin: 20px auto;
+    border-radius: 24px;
+}
+
+.login p{
+    height: 40px;
+    text-align: center;
+    border-bottom: 1px solid;
+    
+}
+
+.login a{
+    color: black;
+    font-size: 14px;
+}
