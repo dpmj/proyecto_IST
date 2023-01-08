@@ -26,6 +26,8 @@
 		<!-- Fontawesome para los símbolos -->
 		<script src="https://kit.fontawesome.com/f7bd64aa23.js" crossorigin="anonymous"></script>
 
+		<!-- Interacciones LogIn -->
+		<script src="js/login.js"></script>
 	
 	</head>
 
@@ -35,10 +37,10 @@
 		<header class="titulo_principal_flex">
 			
 			<!-- logo, título, lema -->
-			<a href="index.html" id="logo">
+			<a href="#" id="logo">
 				<img alt="Logotipo" src="img/logos/logo.png">
 			</a>
-			<a href="index.html" id=titulo_y_lema>
+			<a href="#" id=titulo_y_lema>
 				<h1>Taskify</h1>
 				<p>Organize your life</p>
 			</a>
@@ -46,11 +48,8 @@
 			<!-- Menú de navegación horizontal -->
 			<nav class="menu_principal">
 				<ul><!-- Estos comentarios eliminan los espacios en blanco, que molestan en la lista de navegación
-				 --><li><a href="#">Tasks</a></li><!--
-				 --><li><a href="new.html">Create new</a></li><!--
-				 --><li><a href="calendar.html">Calendar</a></li><!--
-				 --><li><a href="media.html">Multimedia</a></li><!--
-				 --><li><a id=login href="login.html">Log in</a></li><!--
+				--><li><a id=registro href="registro.html">Registro</a></li><!--
+				--><li><a id=login href="login.html">Iniciar sesion</a></li><!--
 				--></ul>
 			</nav>
 
@@ -61,11 +60,11 @@
 		<section class="login">
 			<h4>Iniciar sesión</h4>
 
-			<input class="entradas" type="text" name="usuario" value="" placeholder="Usuario">
-			<input class="entradas" type="password" name="contraseña" value="" placeholder="Contraseña">	
-			<input class="btnLogin" type="submit" name="" value="Acceder">
+			<input class="entradas" id="usuario" type="text" name="usuario" value="" placeholder="Usuario">
+			<input class="entradas" id="password" type="password" name="contraseña" value="" placeholder="Contraseña">	
+			<input class="btnLogin" type="button" value="Acceder" onclick="logIn()">
 			
-			<p><a href="#">¿Olvidaste la contraseña?</a></p>
+
 
 
 		</section>
