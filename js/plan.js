@@ -71,11 +71,9 @@ function drag(ev){
 function drop(ev){//Filtrar segun que se ha movido y donde se quiere soltar
 	//Tambien hay que insertar según la posición relativa donde se suelte
 	if(lastDragged.classList.contains("plan")){//Si arrastramos un plan
-		if(ev.target.classList.contains("plan")){//Sobre otro plan
-			ev.target.parentElement.insertBefore(lastDragged, ev.target.nextSibling);		
-		}
-		if(ev.target.classList.contains("categoria")){//Sobre una categoria
-			ev.target.insertBefore(lastDragged, ev.target.lastElementChild);		
+		let categoria = getCategoria(ev.target);
+		if(categoria != null){//Sobre una categoria
+			categoria.insertBefore(lastDragged, categoria.lastElementChild);		
 		}
 	}
 	else if(lastDragged.classList.contains("categoria")){//Si arrastramos una categoria
@@ -84,4 +82,32 @@ function drop(ev){//Filtrar segun que se ha movido y donde se quiere soltar
 	lastDragged=0;
 }
 
+function getCategoria(objeto){
+	let tmp = objeto;
+	while(tmp.parentElement != null && !tmp.classList.contains("categoria")){
+		tmp = tmp.parentElement;
+	}
+	return tmp;
+}
 
+function centroid(element){
+	let rect = element.getBoundingClientRect();
+	return {
+		x: window.scrollX + (rect.left + rect.right)/2,
+		y: window.scrollY + (rect.top + rect.bottom)/2
+	
+	};
+}
+
+//Predecir si la lista está en horizontal o vertical con dos elementos
+function listOrientation_horizontal(a, b){
+ if(!a || !b) return true;
+ const dx = Math.abs(centroid(a).x - centroid(b).x);
+ const dy = Math.abs(centroid(a).y - centroid(b).y);
+ return dx > dy;
+}
+
+//Distancia entre cursor y elemento tras evento
+function dist(evt, centroid){
+	
+}
