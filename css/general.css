@@ -176,6 +176,13 @@ nav.menu_principal ul li a#login:hover {
     box-shadow: inset 0px 0px 0px 5px rgba(0,0,205,1);  /* Efecto de borde interior al pasar por encima */
 }
 
+nav.menu_principal ul li a#login[href="#"] {  /* Efecto al pasar por encima del elemento seleccionado (página actual) */
+    border: 1px solid mediumblue;
+    background-color: mediumblue;
+    color: white;
+    cursor: not-allowed;
+}
+
 
 /* CUERPO DE LA PÁGINA */
 
