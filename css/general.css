@@ -172,19 +172,40 @@ nav.menu_principal ul li a[href="#"]:hover {  /* Efecto al pasar por encima del 
 /* BOTÓN DE LOG IN */
 
 nav.menu_principal ul li a#login {  /* El botón de login tiene un estilo distinto para llamar la atención */
-    color: mediumblue;
-    border: 1px dashed mediumblue;
+    color: rgb(10, 40, 200);
+    border: 1px dashed rgb(10, 40, 200);
 }
 
 nav.menu_principal ul li a#login:hover {
-    border: 1px solid mediumblue;
+    border: 1px solid rgb(10, 40, 200);
     background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: inset 0px 0px 0px 5px rgba(0,0,205,1);  /* Efecto de borde interior al pasar por encima */
+    box-shadow: inset 0px 0px 0px 5px rgba(10, 40, 200, 1);  /* Efecto de borde interior al pasar por encima */
 }
 
 nav.menu_principal ul li a#login[href="#"] {  /* Efecto al pasar por encima del elemento seleccionado (página actual) */
-    border: 1px solid mediumblue;
-    background-color: mediumblue;
+    border: 1px solid rgb(10, 40, 200);
+    background-color: rgb(10, 40, 200);
+    color: white;
+    cursor: not-allowed;
+}
+
+
+/* BOTÓN DE SIGN UP */
+
+nav.menu_principal ul li a#sigup {  /* El botón de login tiene un estilo distinto para llamar la atención */
+    color: rgb(150, 10, 120);
+    border: 1px dashed rgb(150, 10, 120);
+}
+
+nav.menu_principal ul li a#sigup:hover {
+    border: 1px solid rgb(150, 10, 120);
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0px 0px 0px 5px rgba(150, 10, 120, 1);  /* Efecto de borde interior al pasar por encima */
+}
+
+nav.menu_principal ul li a#sigup[href="#"] {  /* Efecto al pasar por encima del elemento seleccionado (página actual) */
+    border: 1px solid rgb(150, 10, 120);
+    background-color: rgb(150, 10, 120);
     color: white;
     cursor: not-allowed;
 }
@@ -195,6 +216,7 @@ nav.menu_principal ul li a#login[href="#"] {  /* Efecto al pasar por encima del 
 div.cuerpo {  /* El cuerpo es un contenedor flex para el contenido principal y la barra aside*/
     box-sizing: border-box;
     width: 100%;
+    min-height: 70vh;
     display: flex;
     flex-direction: row;  /* Soluciona la altura de la barra aside */
     transition: 0.5s;  /* Para la transición según el tamaño de pantalla. Ver final del css */
