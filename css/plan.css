@@ -6,6 +6,9 @@
 #lista_categorias{
 	overflow-x: scroll; /* Muestra la barra de navegación horizontal cuando es necesaria */
 	display: flex;  /* Basado en contenedores flex */
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: flex-start;  /* De manera que no llenen verticalmente el contenedor */
 	margin-right: 30px;
 }
 
@@ -23,8 +26,11 @@
 .categoria {
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(12px);
-    padding: 30px;
-    border-radius: 20px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 25px;
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
 	display: flex;
 	flex-direction: column;
@@ -38,24 +44,58 @@
 	border-bottom: 1px dashed black;
 }
 
+/* PLANES */
 
 .plan{
 	background-color:white;
 	padding: 15px;
 	margin-bottom: 15px;
-	box-shadow: 0px 1px 1px black;
-	border-radius: 10px;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.5);
+	border-radius: 15px;
+	transition: 0.3s;
 }
+
+.plan:hover {
+	cursor: grab;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.7);
+}
+
+
+/* BOTÓN DE CREAR PLANES */
+
+.categoria > button {
+	font-weight: bold;
+	text-align: center;
+	border: none;
+	background-color: rgba(200, 200, 200, 1);
+	padding: 15px;
+	border-radius: 15px;
+	transition: 0.2s;
+}
+
+.categoria > button:hover {
+    background-color: rgb(100, 200, 100);
+    box-shadow: inset 0px 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+
+/* BOTÓN DE AÑADIR CATEGORÍAS */
 
 
 button#add_category {
     margin-left: 30px;
     margin-top: 30px;
-    background-color: rgba(255, 255, 255, 0.8);
+	margin-right: 30px;
+    background-color: rgba(189, 189, 189, 0.5);
     backdrop-filter: blur(12px);
-    padding: 30px;
-    border-radius: 20px;
+    padding: 15px;
+    border-radius: 25px;
+	border: none;
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
-	height: auto;
+	transition: 0.2s;
 }
 
+button#add_category:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 5px 30px 0px rgba(0,0,0,0.7);
+}
