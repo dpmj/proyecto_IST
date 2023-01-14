@@ -1,0 +1,21 @@
+/* CONTENIDO DE NEW.HTML */
+div.central{
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#boton_envio{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    outline: 0;
+}
+
+#boton_envio:hover{
+    background-color: lightgray;
+}
