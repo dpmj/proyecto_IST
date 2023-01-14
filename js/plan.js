@@ -59,21 +59,65 @@ function addPlan(){
 	this.parentElement.insertBefore(plan, this);
 }
 
+//Buscar elemento al que precederemos en la lista por posicion dentro de una lista
+function calculateNext(event, listElements){
+	if(listElements.length < 2) return listElements[0];
+	//Buscar la X más cercana al evento
+	let i = 0;
+	if(listOrientation_horizontal(listElements[0], listElements[1])){
+		while(i < listElements.length && (centroid(listElements[i]).x-event.pageX) < 0){
+			i++;
+		}
+	}
+	else{
+		//Devolver el primer positivo
+		while(i < listElements.length && (centroid(listElements[i]).y-event.pageY) < 0){
+			i++;
+		}
+	}
+	if(i < listElements.length) return listElements[i];
+	else return null;
+}
+
+var plan_cue = document.createElement('hr');
 function allowDrop(event){
 	event.preventDefault();
+	plan_cue.hidden = false;
+	//Para planes
+	let categoria = getCategoria(event.target);
+	if(categoria != null){
+		//Comprobar si la lista es horizontal o vertical
+		//Horizontal -> comparar X, vertical -> comparar Y
+		let listElements = categoria.getElementsByClassName("plan");
+		let next = calculateNext(event, listElements);
+		if(next == null) categoria.insertBefore(plan_cue, categoria.lastElementChild);
+		else categoria.insertBefore(plan_cue, next);
+		//listOrientation_horizontal(a, b);
+		
+	}
+	//console.log(event);
+	//console.log(event.x + event.y);
+
+	//Para categorias
 }
 
 var lastDragged;
 function drag(ev){
 	lastDragged = ev.target;
+	
 }
 
 function drop(ev){//Filtrar segun que se ha movido y donde se quiere soltar
 	//Tambien hay que insertar según la posición relativa donde se suelte
+	
 	if(lastDragged.classList.contains("plan")){//Si arrastramos un plan
+	plan_cue.hidden = true;
 		let categoria = getCategoria(ev.target);
 		if(categoria != null){//Sobre una categoria
-			categoria.insertBefore(lastDragged, categoria.lastElementChild);		
+			let listElements = categoria.getElementsByClassName("plan");
+			let next = calculateNext(ev, listElements);
+			if(next == null) categoria.insertBefore(lastDragged, categoria.lastElementChild);
+			else categoria.insertBefore(lastDragged, next);		
 		}
 	}
 	else if(lastDragged.classList.contains("categoria")){//Si arrastramos una categoria
