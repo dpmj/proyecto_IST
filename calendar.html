@@ -32,27 +32,31 @@
 	<body>
 
 		<!-- Header que incluye la presentación y un menú de navegación -->
-		<header class="titulo_principal_flex">
+		<header class="titulo_principal">
+
+			<div class="titulo_principal_flex"> <!-- Contenedor flexible del header para redimensionar cuando cambia la resolución de pantalla -->
 			
-			<!-- logo, título, lema -->
-			<a href="index.html" id="logo">
-				<img alt="Logotipo" src="img/logos/logo.png">
-			</a>
-			<a href="index.html" id=titulo_y_lema>
-				<h1>Taskify</h1>
-				<p>Organize your life</p>
-			</a>
-			
-			<!-- Menú de navegación horizontal -->
-			<nav class="menu_principal">
-				<ul><!-- Estos comentarios eliminan los espacios en blanco, que molestan en la lista de navegación
-				 --><li><a href="index.html">Plan</a></li><!--
-				 --><li><a href="new_account.html">Create new</a></li><!--
-				 --><li><a href="#">Calendar</a></li><!--
-				 --><li><a href="media.html">Multimedia</a></li><!--
-				 --><li><a id=login href="login.html">Iniciar sesion</a></li><!--
-				--></ul>
-			</nav>
+				<!-- logo, título, lema -->
+				<a href="index.html" id="logo">
+					<img alt="Logotipo" src="img/logos/logo.png">
+				</a>
+				<a href="index.html" id=titulo_y_lema>
+					<h1>Taskify</h1>
+					<p>Organize your life</p>
+				</a>
+				
+				<!-- Menú de navegación horizontal -->
+				<nav class="menu_principal">
+					<ul><!-- Estos comentarios eliminan los espacios en blanco, que molestan en la lista de navegación
+					--><li><a href="index.html">Plan</a></li><!--
+					--><li><a href="new_account.html">Create new</a></li><!--
+					--><li><a href="#">Calendar</a></li><!--
+					--><li><a href="media.html">Multimedia</a></li><!--
+					--><li><a id=login href="login.html">Log In</a></li><!--
+					--></ul>
+				</nav>
+
+			</div>
 
 		</header>
 
@@ -63,11 +67,10 @@
 
 			<!-- Contenido principal -->
 			<div class="principal">
+				
 				<article>
-                    <iframe id="calendar_iframe_id" name="calendar_iframe_name" onload="ajustar_altura()" src="calendar_iframe.html" title="Calendario" sandbox="allow-scripts allow-same-origin"></iframe>
-                </article>
-
-                <script src="js/calendar_iframe_fix_height.js"></script>
+                    <iframe id="calendar_iframe_id" name="calendar_iframe_name" onload="ajustar_altura()" src="calendar_iframe.html" title="Calendario" sandbox="allow-scripts allow-same-origin"></iframe><!--
+			 --></article>
 
 		 	</div> <!-- class="principal" -->
 
@@ -95,30 +98,34 @@
 
 		<!-- Pie de página -->
 		<footer>
-			
-			<!-- logos varios -->
-			<a href="https://www.upv.es/">
-				<img alt="Logotipo" src="img/logos/upv_white.png">
-			</a>
-			
-			<div class="logo_footer">
-				<img alt="Logotipo" src="img/logos/logo_w.png">
-				<h1>Taskify</h1>
-			</div>
-			
 
-			<div class="creditos">
-				<h3>Authors:</h3>
+			<div class="footer_flex">  <!-- Contenedor flexible para el footer -->
+			
+				<!-- logos varios -->
+				<a href="https://www.upv.es/">
+					<img alt="Logotipo" src="img/logos/upv_white.png">
+				</a>
+				
+				<div class="logo_footer">
+					<img alt="Logotipo" src="img/logos/logo_w.png">
+					<h1>Taskify</h1>
+				</div>
+				
 
-				<hr>
+				<div class="creditos">
+					<h3>Authors:</h3>
 
-				<ul>
-					<li><a href="mailto:jdelpin@upv.teleco.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Juan Del Pino Mena</a></li>
-					<li><a href="mailto:frazaro@teleco.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Francisco Zapata Romero</a></li>
-					<li><a href="mailto:amfriol@teleco.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Amparo Frigola Olaso</a></li>
-					<li><a href="mailto:ajorlop@upv.teleco.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Alejandro Jorge López</a></li>
-					<li><a href="mailto:dagarbl2@epsa.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">David García Blanes</a></li>
-				</ul>
+					<hr>
+
+					<ul>
+						<li><a href="mailto:jdelpin@upv.teleco.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Juan Del Pino Mena</a></li>
+						<li><a href="mailto:frazaro@teleco.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Francisco Zapata Romero</a></li>
+						<li><a href="mailto:amfriol@teleco.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Amparo Frigola Olaso</a></li>
+						<li><a href="mailto:ajorlop@upv.teleco.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Alejandro Jorge López</a></li>
+						<li><a href="mailto:dagarbl2@epsa.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">David García Blanes</a></li>
+					</ul>
+				</div>
+
 			</div>
 
 		</footer>

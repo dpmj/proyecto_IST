@@ -47,25 +47,29 @@ a {
 
 /* HEADER */
 
-header.titulo_principal_flex {  /* Contenedor flex del header */
+header.titulo_principal {  /* Contenedor flex del header */
     box-sizing: border-box;
     position: relative;
     z-index: 1;  /* Colocado por encima de otros contenidos */
     background-color: rgba(255,255,255,0.7);  /* Semitransparente */
     margin: 0;
     padding: 0;
-    padding-left: 30px;
-    padding-right: 30px;
-    display: flex; /* Flex */
-    flex-direction: row;  /* Lista */
-    align-items: center;
-    justify-content: center; /* Centrado */
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.7);  /* Efecto de sombra */
     border: none;
     backdrop-filter: blur(12px);  /* Efecto de desenfoque de fondo */
 }
 
-header.titulo_principal_flex h1 {  /* Estilo del título de la página */
+div.titulo_principal_flex {
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex; /* Flex */
+    flex-direction: row;  /* Lista */
+    justify-content: center; /* Centrado */
+    align-items: center;
+    transition: 0.5s;
+}
+
+div.titulo_principal_flex h1 {  /* Estilo del título de la página */
     font-size: 30px;
     font-family: "Lobster", "Inter", Arial, Helvetica, sans-serif;
 }
@@ -190,9 +194,8 @@ div.cuerpo {  /* El cuerpo es un contenedor flex para el contenido principal y l
     box-sizing: border-box;
     width: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: nowrap;
+    flex-direction: row;  /* Soluciona la altura de la barra aside */
+    transition: 0.5s;  /* Para la transición según el tamaño de pantalla. Ver final del css */
     /* z-index: 0; De forma que esté por debajo del footer y el header y se proyecten sus sombras */
 }
 
@@ -200,7 +203,6 @@ div.cuerpo {  /* El cuerpo es un contenedor flex para el contenido principal y l
 /* CONTENIDO PRINCIPAL */
 
 div.principal {  /* Donde se encuentran los artículos y otros contenidos */
-    box-sizing: border-box;
     width: 80%;
 }
 
@@ -208,12 +210,12 @@ div.principal {  /* Donde se encuentran los artículos y otros contenidos */
 /* BARRA LATERAL */
 
 aside {  /* Barra de navegación lateral */
-    box-sizing: border-box;
     padding: 30px;
     width: 20%;
-    height: 100%;  /* No consigo que el aside ocupe todo el espacio vertical disponible */
+    max-height: auto;
     background-color: rgba(189, 189, 189, 0.5);
     backdrop-filter: blur(12px);
+    transition: 0.5s;  /* Para la transición según el tamaño de pantalla. Ver final del css */
     /* He dejado estas unidades porque no consigo que la barra use el 100% del espacio vertical disponible */
 }
 
@@ -272,12 +274,15 @@ footer {
     box-sizing: border-box;
     background-color: rgba(29, 29, 29, 0.7);
     backdrop-filter: blur(12px);
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.7);
+}
+
+footer div.footer_flex {
     padding: 30px;
     padding-bottom: 50px;
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.7);
-
     display: flex;  /* Contenedor flex de los créditos y logos */
     justify-content: space-between;  /* Para distribuir los elementos horizontalmente */
+    transition: 0.5s;
 }
 
 
@@ -328,4 +333,46 @@ footer div.logo_footer img {
 footer div.logo_footer h1 {
     font-size: 30px;
     font-family: "Lobster", "Inter", Arial, Helvetica, sans-serif;
+}
+
+
+
+
+
+/* ESTILOS DINÁMICOS CON EL TAMAÑO DE LA VENTANA */
+
+
+@media (min-width: 1281px) {  /* Si la pantalla es más grande que este tamaño */
+    
+    /* Barra de navegación superior */
+
+    div.titulo_principal_flex {
+        width: 1280px; /* redimensionar cuerpo */
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* cuerpo */
+    
+    div.cuerpo {
+        width: 1280px; /* redimensionar cuerpo */
+        margin-left: auto;  /* Guardar márgenes a los lados */
+        margin-right: auto;
+    }
+
+    /* Barra de navegación lateral */
+
+    aside {
+        width: 250px;
+    }
+
+    /* footer */
+
+    footer div.footer_flex {
+        width: 1280px; /* redimensionar cuerpo */
+        margin-left: auto;  /* Guardar márgenes a los lados */
+        margin-right: auto;
+    }
+    
+
 }
