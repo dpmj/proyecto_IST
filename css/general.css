@@ -18,10 +18,12 @@ body {
     min-width: 930px;
     box-sizing: border-box;
     background-color: none;
-    background-image: url("../img/background/example.jpg");
+    /* fondo de la página */
+    background-image: url("../img/background/example.jpg");  /* Imagen por defecto */
+    background-position: 50%; 
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center; 
 }
 
 h1 {
@@ -281,6 +283,9 @@ footer div.footer_flex {
     padding: 30px;
     padding-bottom: 50px;
     display: flex;  /* Contenedor flex de los créditos y logos */
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: flex-start;  /* De manera que no llenen verticalmente el contenedor */
     justify-content: space-between;  /* Para distribuir los elementos horizontalmente */
     transition: 0.5s;
 }
@@ -318,25 +323,48 @@ footer div.creditos ul li a {
 
 /* Logo footer */
 
-footer div.logo_footer {
+footer div#logo_footer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60px;
 }
 
-footer div.logo_footer img {
+footer div#logo_footer img {
     height: 100%;
     margin-right: 20px;
 }
 
-footer div.logo_footer h1 {
+footer div#logo_footer h1 {
     font-size: 30px;
     font-family: "Lobster", "Inter", Arial, Helvetica, sans-serif;
 }
 
 
+/* Botón para cambiar el fondo de la página */
 
+footer div#change_background button {
+    color: white;
+    font-weight: normal;
+    padding: 10px;
+    margin-top: 11px;
+    font-size: 15px;
+    line-height: 15px;
+    border: 1px dashed white;
+    border-radius: 20px;
+    background-color: transparent;
+    transition: 0.2s;
+}
+
+footer div#change_background button:hover {
+    border: 1px solid white;
+    box-shadow: inset 0px 0px 0px 3px rgb(255, 255, 255);
+}
+
+footer div#change_background button:active {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+}
 
 
 /* ESTILOS DINÁMICOS CON EL TAMAÑO DE LA VENTANA */
