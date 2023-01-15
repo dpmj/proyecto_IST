@@ -191,14 +191,13 @@ function showCalendar(prevNextIndicator)
     // drag & drop
     task_containers = document.getElementsByClassName("day_task_container");  // contenedores del día del mes actual
     create_buttons = document.getElementsByClassName("create_task");  // botones de creación de tareas
+
     makeGridDroppable();  // Hacer que se puedan arrastrar y soltar tareas
 }
 
 
 
-
-
-// FUNCIONES PARA LOS BOTONES
+// FUNCIONES PARA LOS BOTONES DE NAVEGACIÓN DEL CALENDARIO
 
 // Ejecutado cuando se pulsa el botón de mes siguiente
 function prevMonth()
@@ -232,43 +231,8 @@ showCalendar(0);
 // ///////////////////////////////////////////////////////////////////////////////////////
 /* FUNCIONALIDAD DE ARRASTRAR Y SOLTAR DEL CALENDARIO */
 
-/* Listener a la espera a que se termine de cargar por completo la página. */
 
-
-// document.addEventListener('DOMContentLoaded', function()
-//     {
-// 		task_containers = document.getElementsByClassName("day_task_container");  // contenedores del día del mes actual
-// 		create_buttons = document.getElementsByClassName("create_task");  // botones de creación de tareas
-//         makeGridDroppable();  // cambiamos los atributos de la rejilla para permitir que pueda soltarse elementos en ella 
-        
-//         //addPlan();
-// 	}
-// );
-
-// // Función que es llamada en el 
-// function allowDrop(ev){
-// 	ev.preventDefault();
-// 	plan_cue.hidden = false;
-// 	//Para planes
-// 	let categoria = getCategoria(ev.target);
-// 	if(categoria != null){
-// 		//Comprobar si la lista es horizontal o vertical
-// 		//Horizontal -> comparar X, vertical -> comparar Y
-// 		let listElements = categoria.getElementsByClassName("plan");
-// 		let next = calculateNext(ev, listElements);
-// 		if(next == null) categoria.insertBefore(plan_cue, categoria.lastElementChild);
-// 		else categoria.insertBefore(plan_cue, next);
-// 		//listOrientation_horizontal(a, b);
-		
-// 	}
-// 	//console.log(event);
-// 	//console.log(event.x + event.y);
-
-// 	//Para categorias
-// }
-
-
-// Handler del evento de arrastrar un plan
+// Handler del evento de arrastrar un plan, almacena el último elemento arrastrado
 var lastDragged;
 function dragHandler(ev)
 {
@@ -276,7 +240,7 @@ function dragHandler(ev)
 }
 
 
-// Añade un plan
+// Añade un plan al contenedor correspondiente
 var plan_counter = 1;
 function addPlan()
 {
@@ -299,6 +263,8 @@ function addPlan()
     // lastElementChild: div day_task_container
 }
 
+
+// calcula el día objetivo del drop
 function getTargetDay(obj){
 	let tmp = obj;
 	while(tmp.parentElement != null && !tmp.classList.contains("day_task_container")){
@@ -307,32 +273,119 @@ function getTargetDay(obj){
 	return tmp;
 }
 
+
+//Buscar elemento al que precederemos en la lista por posicion dentro de una lista
+function calculateNext(event, listElements, horizontal){
+	//Buscar la X más cercana al evento
+	let i = 0;
+	if(horizontal){
+		while(i < listElements.length && (centroid(listElements[i]).x-event.pageX) < 0){
+			i++;
+		}
+	}
+	else{
+		//Devolver el primer positivo
+		while(i < listElements.length && (centroid(listElements[i]).y-event.pageY) < 0){
+			i++;
+		}
+	}
+	if(i < listElements.length) return listElements[i];
+	else return null;
+}
+
+
+// Calcula el centroide del div
+function centroid(element){
+	let rect = element.getBoundingClientRect();
+	return {
+		x: window.scrollX + (rect.left + rect.right)/2,
+		y: window.scrollY + (rect.top + rect.bottom)/2
+	
+	};
+}
+
+
+// Predecir si la lista está en horizontal o vertical con dos elementos
+function listOrientation_horizontal(a, b){
+    if(!a || !b) return true;
+    const dx = Math.abs(centroid(a).x - centroid(b).x);
+    const dy = Math.abs(centroid(a).y - centroid(b).y);
+    return dx > dy;
+   }
+
+
+// elemento de pista visual del drop de la tarea
 var plan_cue = document.createElement('div');
 plan_cue.setAttribute("class", "plan_cue");
-plan_cue.innerHTML = "<p>Drop Here<p>";
+plan_cue.innerHTML = "";  // Vacío en este caso, sólo pista visual (línea gris)
+
+
+// Handler del evento dragover
+function dragOverHandler(ev)
+{
+	ev.preventDefault();
+
+	// Si arrastramos un plan
+	if(lastDragged.classList.contains("plan"))
+    {
+		let destination_day = getTargetDay(ev.target);
+		if(destination_day != null)
+        {
+            // Lista de elementos en el contenedor de destino
+			let listElements = destination_day.getElementsByClassName("plan");
+
+		    // Insertamos el plan_cue preventivamente al final, nos sirve para calcular si es horizontal la lista
+            destination_day.insertBefore(plan_cue, destination_day.lastElementChild);
+			var orientacion = listOrientation_horizontal(listElements[0], plan_cue);
+			let next = calculateNext(ev, listElements, orientacion);
+		    
+            // Si no le toca al final corregimos la posición
+			if(next != null) {
+                destination_day.insertBefore(plan_cue, next);
+            }
+			plan_cue.hidden = false;  // esconder la pista visual
+		}
+	}
+}
+
+
+// Handler del evento drop
+function dragLeaveHandler(ev)
+{
+	ev.preventDefault();
+	plan_cue.hidden = true;
+}
+
 
 // Handler del evento drop
 function dropHandler(ev)
 {
 	ev.preventDefault();
-    // Filtrar segun que se ha movido y donde se quiere soltar
-	// Tambien hay que insertar según la posición relativa donde se suelte
 
-    
     // Si arrastramos un plan
 	if(lastDragged.classList.contains("plan"))
     {
-	    plan_cue.hidden = true;
 		let destination_day = getTargetDay(ev.target);
-		if(destination_day != null){//Sobre una categoria
-            destination_day.appendChild(lastDragged);
-			// let listElements = destination_day.getElementsByClassName("plan");
-			// let next = calculateNext(ev, listElements);
-			// if(next == null) categoria.insertBefore(lastDragged, categoria.lastElementChild);
-			// else categoria.insertBefore(lastDragged, next);		
+		if(destination_day != null)
+        {
+            // Lista de elementos en el contenedor de destino
+			let listElements = destination_day.getElementsByClassName("plan");
+
+            // Insertamos el plan_cue preventivamente al final, nos sirve para calcular si es horizontal la lista
+            destination_day.insertBefore(plan_cue, destination_day.lastElementChild);
+			var orientacion = listOrientation_horizontal(listElements[0], plan_cue);
+			let next = calculateNext(ev, listElements, orientacion);
+
+            // Si no le toca al final corregimos la posición			
+			if(next != null) {
+                destination_day.insertBefore(lastDragged, next);
+            } else {
+                destination_day.insertBefore(lastDragged, destination_day.lastElementChild);
+            }
 		}
 	}
-	lastDragged=0;
+	plan_cue.hidden = true;
+	lastDragged = 0;
 }
 
 
@@ -342,16 +395,16 @@ function makeGridDroppable()
     // Handler de soltar elementos
     for (var i = 0; i < task_containers.length; i++)
     {
-        task_containers[i].ondrop = dropHandler;
+        task_containers[i].ondragenter = function(e) { e.preventDefault(); };
+        task_containers[i].ondragover = dragOverHandler;
+        task_containers[i].ondraleave = function(e) { e.preventDefault(); };
+        task_containers[i].ondrop = dropHandler;  // al soltar sobre el contenedor
     }
 
     // Botones de crear tareas
-    for (var i = 0; i < task_containers.length; i++)
+    for (var i = 0; i < create_buttons.length; i++)
     {
         create_buttons[i].onclick = addPlan;
     }
-
-	// current_month_grid.addEventListener("dragover", allowDrop);
-	// current_month_grid.addEventListener("drop", drop);
 }
 
