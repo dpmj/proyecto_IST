@@ -63,14 +63,53 @@
 		<!-- Cuerpo del contenido -->
 		<div class="cuerpo">
 
-			<!-- Contenido principal -->
+
 			<div class="principal">
-			  <div id="lista_categorias">
-			  <button id="add_category"  onclick="addCategory()">+ Add category</button>			    
-			  </div> <!-- id="lista_categorias" -->
+				<article>
+					<div>
+						<h2>Create a new card</h2>
+					</div>
+					<form id="nueva_tarea" action="/create-account" method="post">
+						<br>
+						<label for="name">Card's name</label>
+						<br>
+						<input type="text" id="name" name="name"  value="">
+						<br>
+						<br>
+						<label for="name">Description</label>
+						<br>
+						<textarea id="descripcion" name="name" rows="4" cols="50" placeholder="Describe the card"></textarea>
+						<br>
+						<br>
+						<label for="asignar">Assign card</label>
+						<br>
+						<input type="radio" id="user1" name="asignar" value="user1">
+						<label for="user1">User 1</label>
+						<br>
+						<input type="radio" id="user2" name="asignar" value="user2">
+						<label for="user2">User 2</label>
+						<br>
+						<input type="radio" id="user3" name="asignar" value="user3">
+						<label for="user3">User 3</label>
+						<br>
+						<input type="radio" id="user4" name="asignar" value="user4">
+						<label for="user4">User 4</label>
+						<br>
+						<input type="radio" id="user5" name="asignar" value="user5">
+						<label for="user5">User 5</label>
+						<br>
+						<br>
+						<label for="delivery-date">Delivery Date</label>
+						<br>
+						<input type="date" id="delivery-date" name="delivery-date">
+						<br>
+						<br>
+						<input type="submit" id="boton_envio" value="Create">
+					</form>
+					<script src="js/registrotareas.js"></script>
+				</article>
 
-			</div> <!-- class="principal" -->
-
+		</div> <!--class="principal" -->
 
 			<!-- Barra de navegación a la derecha -->
 			<aside>
