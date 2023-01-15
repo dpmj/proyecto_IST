@@ -19,6 +19,7 @@ function addCategory(nombre, planes){
 
 	//Permitir drop y drag
 	categoria.setAttribute("draggable", true);
+	categoria.addEventListener("dragstart", drag);
 	categoria.addEventListener("dragover", allowDrop);
 	categoria.addEventListener("drop", drop);
 	categoria.addEventListener("dragend", dragCanceled);
@@ -96,7 +97,7 @@ function allowDrop(event){
 	//Para planes
 	if(lastDragged.classList.contains("plan")){
 		let categoria = getCategoria(event.target);
-		if(categoria != null){
+		if(categoria.classList.contains("categoria")){
 		//Comprobar si la lista es horizontal o vertical
 		//Horizontal -> comparar X, vertical -> comparar Y
 			let listElements = categoria.getElementsByClassName("plan");
@@ -112,11 +113,13 @@ function allowDrop(event){
 	//Para categorias
 	else if(lastDragged.classList.contains("categoria")){//Si arrastramos una categoria
 		categorias_html.insertBefore(category_cue, categorias_html.lastElementChild);
+		let listElements = categorias_html.getElementsByClassName("categoria");
 		var orientacion = listOrientation_horizontal(listElements[0], plan_cue);
 		let next = calculateNext(event, listElements, orientacion);
+
 		//Si no le toca al final corregimos
-		if(next != null) categoria.insertBefore(plan_cue, next);
-		plan_cue.hidden = false;
+		if(next != null) categorias_html.insertBefore(plan_cue, next);
+		category_cue.hidden = false;
 	}
 }
 
@@ -128,14 +131,17 @@ function drag(ev){
 }
 
 function dragCanceled(ev){
+	if(lastDragged==0) return;
 	plan_cue.hidden = true;
+	category_cue.hidden = true;
+	
 	lastDragged.classList.remove("active_plan");
-	//lastDragged=0;
+	lastDragged=0;
 }
 
 function drop(ev){//Filtrar segun que se ha movido y donde se quiere soltar
 	//Tambien hay que insertar según la posición relativa donde se suelte
-	
+	if(lastDragged==0) return;
 	if(lastDragged.classList.contains("plan")){//Si arrastramos un plan
 		let categoria = getCategoria(ev.target);
 		if(categoria != null){//Sobre una categoria
@@ -148,10 +154,13 @@ function drop(ev){//Filtrar segun que se ha movido y donde se quiere soltar
 		}
 	}
 	else if(lastDragged.classList.contains("categoria")){//Si arrastramos una categoria
-		var orientacion = listOrientation_horizontal(listElements[0], plan_cue)
+		let listElements = categorias_html.getElementsByClassName("categoria");
+		categorias_html.insertBefore(category_cue, categorias_html.lastElementChild);
+		var orientacion = listOrientation_horizontal(listElements[0], category_cue)
 		let next = calculateNext(ev, listElements, orientacion);
 		//Si no le toca al final corregimos
-		if(next != null) categoria.insertBefore(plan_cue, next);
+		if(next != null) categorias_html.insertBefore(plan_cue, next);
+		else categorias_html.insertBefore(lastDragged, categorias_html.lastElementChild);
 	}
 }
 
