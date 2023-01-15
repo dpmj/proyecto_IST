@@ -55,9 +55,28 @@
 	transition: 0.3s;
 }
 
+/* Feedback visual al usuario de que se puede arrastrar */
 .plan:hover {
 	cursor: grab;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.7);
+}
+
+/* Cuando está siendo arrastrado */
+.plan:active {
+	opacity: 0.6;  
+	cursor: grab;
+    box-shadow: none;
+}
+
+/* Pista visual de dónde se suelta el plan al arrastrar y soltar */
+.plan_cue {
+	background-color:rgba(0,0,0,0.3);
+	padding: 15px;
+	margin-bottom: 15px;
+	border-radius: 15px;
+	color: rgba(0,0,0,0.5);
+	text-align: center;
+    box-shadow: none;
 }
 
 

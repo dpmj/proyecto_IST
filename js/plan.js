@@ -79,7 +79,11 @@ function calculateNext(event, listElements){
 	else return null;
 }
 
-var plan_cue = document.createElement('hr');
+// Objeto de pista visual de dónde se va a soltar el plan
+var plan_cue = document.createElement('div');
+plan_cue.setAttribute("class", "plan_cue");
+plan_cue.innerHTML = "<p>Drop Here<p>";
+
 function allowDrop(event){
 	event.preventDefault();
 	plan_cue.hidden = false;
