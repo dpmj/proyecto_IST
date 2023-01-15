@@ -63,6 +63,7 @@
 
 /* Cuando está siendo arrastrado */
 .plan:active {
+	/* visibility: collapse; */
 	opacity: 0.6;  
 	cursor: grab;
     box-shadow: none;

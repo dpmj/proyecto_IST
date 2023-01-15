@@ -4,8 +4,8 @@ var categorias_html;
 document.addEventListener('DOMContentLoaded',
 	function(){
 		categorias_html = document.querySelector('#lista_categorias');
-		addCategory("Categoria A");
-		addCategory("Categoria B");
+		addCategory("Category A");
+		addCategory("Category B");
 	}
 );
 
@@ -24,7 +24,7 @@ function addCategory(nombre, planes){
 		p.innerHTML = nombre;
 	}
 	else{
-		p.innerHTML = "Categoria "+cat_counter;
+		p.innerHTML = "Category " + cat_counter;
 		cat_counter++;
 	}
 	categoria.appendChild(p);
@@ -36,7 +36,7 @@ function addCategory(nombre, planes){
 
 	//Crear y añadir boton de Añadir plan
 	let btn = document.createElement("button");
-	btn.innerHTML = "+ Añadir plan"
+	btn.innerHTML = "+ Add plan"
 	btn.addEventListener("click", addPlan); 
 	categoria.appendChild(btn);
 
@@ -82,7 +82,7 @@ function calculateNext(event, listElements){
 // Objeto de pista visual de dónde se va a soltar el plan
 var plan_cue = document.createElement('div');
 plan_cue.setAttribute("class", "plan_cue");
-plan_cue.innerHTML = "<p>Drop Here<p>";
+plan_cue.innerHTML = "<p>Drop Here</p>";
 
 function allowDrop(event){
 	event.preventDefault();
@@ -115,7 +115,7 @@ function drop(ev){//Filtrar segun que se ha movido y donde se quiere soltar
 	//Tambien hay que insertar según la posición relativa donde se suelte
 	
 	if(lastDragged.classList.contains("plan")){//Si arrastramos un plan
-	plan_cue.hidden = true;
+		plan_cue.hidden = true;
 		let categoria = getCategoria(ev.target);
 		if(categoria != null){//Sobre una categoria
 			let listElements = categoria.getElementsByClassName("plan");

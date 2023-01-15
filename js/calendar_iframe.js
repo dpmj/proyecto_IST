@@ -25,7 +25,14 @@ var current_shown_date = {
     year: new Date().getFullYear(),
 }
 
+// Para la funcionalidad de drag and drop
+var task_containers;
+var create_buttons;
 
+
+
+// ///////////////////////////////////////////////////////////////////////////////////////
+// FUNCIONES
 
 // Función que construye un array de objetos fecha que serán expuestos en la rejilla
 function datesForGrid(year, month)
@@ -150,7 +157,11 @@ function render()
             ${datesForGrid(current_shown_date.year, current_shown_date.month)
                 .map(date => `<div id="${date.key}" 
                     class="${date.monthClass} ${date.todayClass ? date.todayClass : ''}">
-                        ${date.date}
+                        <div class="day_header_wrapper">
+                            <p>${date.date}</p>
+                            <button class="create_task">+ task</button>
+                        </div>
+                        <div class="day_task_container"></div>
             </div>`).join('')}
         </div>
     `;
@@ -171,16 +182,19 @@ function showCalendar(prevNextIndicator)
     
     // Generar el calendario
     render();
-
+    
+    // botones
     document.getElementById("prev-month").onclick = function(){prevMonth()};
     document.getElementById("next-month").onclick = function(){nextMonth()};
     document.getElementById("current-month").onclick = function(){currentMonth()};
+    
+    // drag & drop
+    task_containers = document.getElementsByClassName("day_task_container");  // contenedores del día del mes actual
+    create_buttons = document.getElementsByClassName("create_task");  // botones de creación de tareas
+    makeGridDroppable();  // Hacer que se puedan arrastrar y soltar tareas
 }
 
 
-
-// Generar y mostrar el mes actual en el calendario
-showCalendar(0);
 
 
 
@@ -210,4 +224,134 @@ function currentMonth()
 }
 
 
+// Generar y mostrar el mes actual en el calendario
+showCalendar(0);
+
+
+
+// ///////////////////////////////////////////////////////////////////////////////////////
+/* FUNCIONALIDAD DE ARRASTRAR Y SOLTAR DEL CALENDARIO */
+
+/* Listener a la espera a que se termine de cargar por completo la página. */
+
+
+// document.addEventListener('DOMContentLoaded', function()
+//     {
+// 		task_containers = document.getElementsByClassName("day_task_container");  // contenedores del día del mes actual
+// 		create_buttons = document.getElementsByClassName("create_task");  // botones de creación de tareas
+//         makeGridDroppable();  // cambiamos los atributos de la rejilla para permitir que pueda soltarse elementos en ella 
+        
+//         //addPlan();
+// 	}
+// );
+
+// // Función que es llamada en el 
+// function allowDrop(ev){
+// 	ev.preventDefault();
+// 	plan_cue.hidden = false;
+// 	//Para planes
+// 	let categoria = getCategoria(ev.target);
+// 	if(categoria != null){
+// 		//Comprobar si la lista es horizontal o vertical
+// 		//Horizontal -> comparar X, vertical -> comparar Y
+// 		let listElements = categoria.getElementsByClassName("plan");
+// 		let next = calculateNext(ev, listElements);
+// 		if(next == null) categoria.insertBefore(plan_cue, categoria.lastElementChild);
+// 		else categoria.insertBefore(plan_cue, next);
+// 		//listOrientation_horizontal(a, b);
+		
+// 	}
+// 	//console.log(event);
+// 	//console.log(event.x + event.y);
+
+// 	//Para categorias
+// }
+
+
+// Handler del evento de arrastrar un plan
+var lastDragged;
+function dragHandler(ev)
+{
+	lastDragged = ev.target;
+}
+
+
+// Añade un plan
+var plan_counter = 1;
+function addPlan()
+{
+	let plan = document.createElement("div");
+	plan.classList.add("plan");
+
+	//Permitir drag
+	plan.addEventListener("dragstart", dragHandler);
+	plan.setAttribute("draggable", true);
+	
+	//Temporal --Recoger user input
+	plan.innerHTML = "<p>Plan " + plan_counter + "</p>";
+	plan_counter++;
+
+    // Sube dos niveles hasta el día actual. Entonces, baja al contenedor "task containers" e inserta la tarea en ella.
+	this.parentElement.parentElement.lastElementChild.appendChild(plan);
+    // this: botón create_task
+    // parentElement: div day_header_wrapper
+    // parentElement: div current
+    // lastElementChild: div day_task_container
+}
+
+function getTargetDay(obj){
+	let tmp = obj;
+	while(tmp.parentElement != null && !tmp.classList.contains("day_task_container")){
+		tmp = tmp.parentElement;
+	}
+	return tmp;
+}
+
+var plan_cue = document.createElement('div');
+plan_cue.setAttribute("class", "plan_cue");
+plan_cue.innerHTML = "<p>Drop Here<p>";
+
+// Handler del evento drop
+function dropHandler(ev)
+{
+	ev.preventDefault();
+    // Filtrar segun que se ha movido y donde se quiere soltar
+	// Tambien hay que insertar según la posición relativa donde se suelte
+
+    
+    // Si arrastramos un plan
+	if(lastDragged.classList.contains("plan"))
+    {
+	    plan_cue.hidden = true;
+		let destination_day = getTargetDay(ev.target);
+		if(destination_day != null){//Sobre una categoria
+            destination_day.appendChild(lastDragged);
+			// let listElements = destination_day.getElementsByClassName("plan");
+			// let next = calculateNext(ev, listElements);
+			// if(next == null) categoria.insertBefore(lastDragged, categoria.lastElementChild);
+			// else categoria.insertBefore(lastDragged, next);		
+		}
+	}
+	lastDragged=0;
+}
+
+
+// Se pueden soltar elementos en la rejilla
+function makeGridDroppable() 
+{
+    // Handler de soltar elementos
+    for (var i = 0; i < task_containers.length; i++)
+    {
+        task_containers[i].ondrop = dropHandler;
+    }
+
+    // Botones de crear tareas
+    for (var i = 0; i < task_containers.length; i++)
+    {
+        create_buttons[i].onclick = addPlan;
+    }
+
+	// current_month_grid.addEventListener("dragover", allowDrop);
+	// current_month_grid.addEventListener("drop", drop);
+}
 

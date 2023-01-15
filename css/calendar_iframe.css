@@ -50,38 +50,157 @@ div.calendar-nav h2 {
     margin-left: auto;
 }
 
-
-/* Rejilla de los días de la semana */
-
-div.calendar-grid div.days-of-week {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-weight: bold;
-    background-color: rgba(140, 180, 255, 0.4);
-}
-
 /* Rejilla del calendario */
 
 div.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);  /* Organizar en 7 columnas, de 1 flex cada una */
-    text-align: center;
+    display: grid;  /* Rejilla */
+    grid-template-columns: repeat(7, 1fr);  /* Organizar en 7 columnas, de 1 unidad flex cada una */
+    border-bottom: 1px solid rgba(162, 162, 162, 0.5);
+    border-right: 1px solid rgba(162, 162, 162, 0.5);
 }
-  
-div.calendar-grid div.prev, div.next, div.current {
-    height: 100px;
+
+div.calendar-grid p {
+    font-size: 15px;
+}
+
+/* Rejilla de los días de la semana */
+
+div.days-of-week {
     padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(140, 180, 255, 0.4);
+    border-top: 1px solid rgba(140, 180, 255, 0.6);
+    border-left: 1px solid rgba(140, 180, 255, 0.6);
+}
+
+div.prev, div.next, div.current {
+    height: 100px;
+    transition: 0.2s;
+    border-top: 1px solid rgba(162, 162, 162, 0.5);
+    border-left: 1px solid rgba(162, 162, 162, 0.5);
+    /* padding: 10px; */
     /* margin: 0 auto; */
 }
 
 div.prev, div.next {
-    color: rgb(124, 124, 124);
+    /* color: rgb(124, 124, 124); */
     background-color: rgba(162, 162, 162, 0.4);
+    opacity: 0.7;
 }
-  
 
 div.today {
     background-color: rgb(54, 121, 244);
     color: white;
     font-weight:bold;
 }
+
+div.prev:hover, div.next:hover, div.current:hover {
+    height: 100px;
+    box-shadow: inset 0px 0px 0px 2px rgb(0, 0, 0);
+    /* margin: 0 auto; */
+}
+
+
+
+
+
+/* EFECTOS DE AÑADIR TAREAS A LOS DÍAS */
+
+/* Cabecera de los días */
+div.day_header_wrapper {
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* margin-bottom: 5px; */
+    padding: 10px;
+    height: 35px;
+}
+
+button.create_task
+{
+    visibility: hidden;  /* El botón está escondido hasta que se pasa el ratón por encima del día */
+
+}
+
+div.current:hover button.create_task 
+{
+    visibility: visible;
+}
+
+button.create_task 
+{   
+    font-weight: normal;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(15, 57, 15);
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    border: 2px solid rgb(50, 200, 50);
+    background-color: rgb(50, 200, 50);
+}
+
+button.create_task:hover
+{   
+    background-color: rgb(50, 200, 50);
+    color: rgb(15, 57, 15);
+    border: 2px solid rgb(15, 57, 15);
+}
+
+button.create_task:active
+{   
+    background-color: rgb(34, 146, 34);
+}
+
+
+/* Contenedor de las tareas */
+
+div.day_task_container {
+    width: 100%;
+    height: calc(100px - 38px);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Estilo de los planes que aparecen en el calendario */
+
+.plan{
+    margin-left: 10px;
+    margin-right: 10px;
+	margin-bottom: 5px;
+	background-color:white;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.5);
+	border-radius: 15px;
+	transition: 0.3s;
+}
+
+.plan p {
+    color: black;
+    font-size: 13px !important;
+}
+
+/* Feedback visual al usuario de que se puede arrastrar */
+.plan:hover {
+	cursor: grab;
+    box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.7);
+}
+
+/* Cuando está siendo arrastrado */
+/* .plan:active {
+	opacity: 0.6;  
+	cursor: grab;
+    box-shadow: none;
+} */

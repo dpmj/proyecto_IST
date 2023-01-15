@@ -15,7 +15,7 @@ body, html {
 body {
     margin: 0;
     padding: 0;
-    min-width: 930px;
+    min-width: 1000px;
     box-sizing: border-box;
     background-color: none;
     /* fondo de la página */
@@ -281,11 +281,11 @@ aside nav.menu_lateral ul li a {
     padding: 15px;
     transition-duration: 0.2s;  /* Añade una ligera suavidad al cambio de color por hover */
     border: 1px solid black;
-    border-radius: 15px;
+    border-radius: 25px;
 }
 
 aside nav.menu_lateral ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 5px;
 }
 
