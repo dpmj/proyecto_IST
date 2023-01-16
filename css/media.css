@@ -1,5 +1,6 @@
 .principal div{
 	display: flex;
+	flex-direction: row;
 	align-items: stretch;
   	text-align: center;
 }
