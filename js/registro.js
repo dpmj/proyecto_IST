@@ -30,6 +30,9 @@ submitButton.addEventListener('click', (event) => {
 
 	//obtener todos los campos de texto del formulario
 	verificar(event, campos, botones, check1, check2);
+
+	//si está todo correcto, nos lleva a index.html
+	abrirnuevapagina();
 });
 
 
@@ -46,6 +49,10 @@ function verificar(event, campos, botones, check1, check2) {
 			return
 		}
 	}
+
+	radio_check(event,botones,check1,check2);
+}
+function radio_check(event,botones,check1,check2){
 	const noneChecked_boton = Array.prototype.every.call(botones, botones => !botones.checked); // devuelve true si ningún elemento de entrada de tipo radio ha sido marcado
 	const noneChecked_check1 = Array.prototype.every.call(check1, check1 => !check1.checked); // devuelve true si ningún elemento de entrada de tipo checkbox ha sido marcado
 	const noneChecked_check2 = Array.prototype.every.call(check2, check2 => !check2.checked); // devuelve true si ningún elemento de entrada de tipo checkbox ha sido marcado
@@ -69,8 +76,8 @@ function verificar(event, campos, botones, check1, check2) {
 	//Si están todos los campos rellenados, se envía el formulario
 	alert('Form successfully submitted');
 	event.preventDefault();
-	abrirnuevapagina(); //Si se han rellenado todos los campos, se visualiza la pagina index.html
 }
+	
 
 function abrirnuevapagina(){
 	window.location.assign('index.html');
