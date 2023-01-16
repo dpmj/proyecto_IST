@@ -16,13 +16,5 @@
 	padding-bottom: 10px;
 }
 header.titulo_principal {  /* Contenedor flex del header */
-    box-sizing: border-box;
-    position: relative;
-    z-index: 1;  /* Colocado por encima de otros contenidos */
-    background-color: rgba(189,236,182,0.7);  /* Semitransparente */
-    margin: 0;
-    padding: 0;
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.7);  /* Efecto de sombra */
-    border: none;
-    backdrop-filter: blur(12px);  /* Efecto de desenfoque de fondo */
+    background-color: rgba(189,236,182,0.7);  /* Color verde */
 }

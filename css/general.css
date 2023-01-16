@@ -250,6 +250,11 @@ aside h2 {
 
 /* BARRA DE NAVEGACIÓN EN EL ASIDE */
 
+aside > div {
+    position: sticky;  /* Contenido siempre visible en pantalla */
+    top: 30px;
+}
+
 aside nav.menu_lateral {
     background-color: none;
     border: none;
