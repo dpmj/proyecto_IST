@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded',
 	function(){
 		categorias_html = document.querySelector('#lista_categorias');
 		categorias_html.addEventListener("dragover", allowDrop);
-		categorias_html.addEventListener("drop", drop);
+		categorias_html.addEventListener("dragend", drop);
 		categorias_html.addEventListener("dragend", dragCanceled);
 		addCategory("Category A");
 		addCategory("Category B");
@@ -126,14 +126,12 @@ function allowDrop(event){
 
 var lastDragged;
 function drag(ev){
-	ev.preventDefault();
 	lastDragged = ev.target;
 	lastDragged.classList.add("active_plan");
 }
 
 function dragCanceled(ev){
 	if(lastDragged==0) return;
-	ev.preventDefault();
 	plan_cue.hidden = true;
 	category_cue.hidden = true;
 	
