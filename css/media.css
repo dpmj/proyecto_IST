@@ -1,17 +1,17 @@
-.casos_exito>div{
+.principal div{
 	display: flex;
 	align-items: stretch;
   	text-align: center;
 }
-.casos_exito>div>article>h3{
+.principal div>article>h3{
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-.casos_exito>div>article>p{
+.principal div>article>p{
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-.casos_exito>div>article>iframe{
+.principal div>article>iframe{
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
