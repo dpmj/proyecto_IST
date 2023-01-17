@@ -52,6 +52,7 @@ function verificar(event, campos, botones, check1, check2) {
 
 	radio_check(event,botones,check1,check2);
 }
+
 function radio_check(event,botones,check1,check2){
 	const noneChecked_boton = Array.prototype.every.call(botones, botones => !botones.checked); // devuelve true si ningún elemento de entrada de tipo radio ha sido marcado
 	const noneChecked_check1 = Array.prototype.every.call(check1, check1 => !check1.checked); // devuelve true si ningún elemento de entrada de tipo checkbox ha sido marcado
