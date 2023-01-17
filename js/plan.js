@@ -90,7 +90,6 @@ plan_cue.innerHTML = "<p>Drop Here</p>";
 
 var category_cue = document.createElement('div');
 category_cue.setAttribute("class", "category_cue");
-category_cue.innerHTML = "<p>Drop Here<p>";
 
 function allowDrop(event){
 	event.preventDefault();
@@ -114,11 +113,19 @@ function allowDrop(event){
 	else if(lastDragged.classList.contains("categoria")){//Si arrastramos una categoria
 		categorias_html.insertBefore(category_cue, categorias_html.lastElementChild);
 		let listElements = categorias_html.getElementsByClassName("categoria");
-		var orientacion = listOrientation_horizontal(listElements[0], plan_cue);
+		var orientacion = listOrientation_horizontal(listElements[0], category_cue);
 		let next = calculateNext(event, listElements, orientacion);
 
 		//Si no le toca al final corregimos
-		if(next != null) categorias_html.insertBefore(plan_cue, next);
+		if(next != null){
+			//Comprobamos si lastDragged ya es el ultimo elemento
+
+			categorias_html.insertBefore(category_cue, next);
+		}
+		else{
+			//Comprobamos si el next es lastDragged
+			console.log("El ultimo");
+		}
 		category_cue.hidden = false;
 	}
 }
@@ -156,11 +163,15 @@ function drop(ev){//Filtrar segun que se ha movido y donde se quiere soltar
 	else if(lastDragged.classList.contains("categoria")){//Si arrastramos una categoria
 		let listElements = categorias_html.getElementsByClassName("categoria");
 		categorias_html.insertBefore(category_cue, categorias_html.lastElementChild);
-		var orientacion = listOrientation_horizontal(listElements[0], category_cue)
+		var orientacion = listOrientation_horizontal(listElements[0], category_cue);
 		let next = calculateNext(ev, listElements, orientacion);
 		//Si no le toca al final corregimos
-		if(next != null) categorias_html.insertBefore(plan_cue, next);
-		else categorias_html.insertBefore(lastDragged, categorias_html.lastElementChild);
+		if(next != null){
+			categorias_html.insertBefore(lastDragged, next);
+		}
+		else{
+			categorias_html.insertBefore(lastDragged, categorias_html.lastElementChild);
+		}
 	}
 }
 

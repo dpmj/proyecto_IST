@@ -79,6 +79,16 @@
     box-shadow: none;
 }
 
+.category_cue {
+	border-left: 3px solid;
+	min-width: 0px !important;
+	width: 10px !important;
+	height: 134px;
+	border-color: black;
+	background-color: black;
+	
+}
+
 
 /* BOTÓN DE CREAR PLANES */
 
