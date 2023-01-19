@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Presentación -->
+		<title>Taskify | Plan</title>
+
+		<!-- Hojas de estilo -->
+		<link rel="stylesheet" type="text/css" href="css/general.css">
+		<link rel="stylesheet" type="text/css" href="css/articles.css">
+		
+		<!-- Importamos fuentes desde google fonts -->
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@600&display=swap" rel="stylesheet"> -->
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet"> 
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" href="img/logos/logo.png">
+
+		<!-- Fontawesome para los símbolos -->
+		<script src="https://kit.fontawesome.com/f7bd64aa23.js" crossorigin="anonymous"></script>
+
+	
+	</head>
+
+	<body>
+
+		<!-- Header que incluye la presentación y un menú de navegación -->
+		<header class="titulo_principal_flex">
+			
+			<!-- logo, título, lema -->
+			<a href="index.html" id="logo">
+				<img alt="Logotipo" src="img/logos/logo.png">
+			</a>
+			<a href="index.html" id=titulo_y_lema>
+				<h1>Taskify</h1>
+				<p>Organize your life</p>
+			</a>
+			
+			<!-- Menú de navegación horizontal -->
+			<nav class="menu_principal">
+				<ul><!-- Estos comentarios eliminan los espacios en blanco, que molestan en la lista de navegación
+				 --><li><a href="#">Tasks</a></li><!--
+				 --><li><a href="new.html">Create new</a></li><!--
+				 --><li><a href="calendar.html">Calendar</a></li><!--
+				 --><li><a href="media.html">Multimedia</a></li><!--
+				 --><li><a id=login href="login.html">Iniciar sesion</a></li><!--
+				--></ul>
+			</nav>
+
+		</header>
+
+
+		<!-- Cuerpo del contenido -->
+		<div class="cuerpo">
+
+
+			<!-- Contenido principal -->
+			<div class="principal">
+
+				<article>
+
+					<h2>Article placeholder 1</h2>
+
+					<h3>
+						A sustituir su interior por tarjetas, formularios, calendario, videos y fotos, etc.
+					</h3>
+
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ipsum ab delectus libero! Perspiciatis reprehenderit dolor error autem aliquam fugiat odio tempora consequuntur, quidem eligendi nam facere, quibusdam repudiandae quis, illo quia nostrum. Rem ipsam vero reprehenderit laboriosam fuga. Eos error ratione eaque, aut excepturi soluta asperiores quae reiciendis laudantium architecto ex aspernatur sunt repudiandae cupiditate fugiat eligendi obcaecati alias! Repellat dolores ullam perferendis ducimus velit incidunt iusto illo temporibus fuga numquam? Cupiditate, deserunt ea tempore voluptatibus optio quasi voluptates, id ratione non dolore cum maxime aliquam natus quis ipsum voluptatum culpa, numquam provident? Nostrum, libero. Iure cupiditate minus aliquid et nobis nemo itaque ut iusto, necessitatibus temporibus, officiis natus! Eaque distinctio vitae recusandae eligendi sunt odit blanditiis velit modi ducimus alias ea harum iusto delectus atque, ratione quis animi dolor illum ipsam qui itaque illo dolorem at magni. Tempore, fugit, excepturi aliquam accusantium architecto nostrum, quasi asperiores nisi harum eaque nemo impedit in! Iste quas facere doloribus quod rem impedit, perspiciatis minima quis aut, vel aperiam maxime sapiente! Nisi eligendi inventore numquam ullam dolorum. Quisquam nesciunt delectus repellat similique veniam beatae odio, officiis ducimus. Quis cumque totam nihil doloribus quisquam tenetur, cupiditate, iure recusandae incidunt ut voluptates, distinctio culpa.
+					</p>
+
+				</article>
+
+
+				<article>
+
+					<h2>Article placeholder 2</h2>
+
+					<h3>
+						A sustituir su interior por tarjetas, formularios, calendario, videos y fotos, etc.
+					</h3>
+
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ipsum ab delectus libero! Perspiciatis reprehenderit dolor error autem aliquam fugiat odio tempora consequuntur, quidem eligendi nam facere, quibusdam repudiandae quis, illo quia nostrum. Rem ipsam vero reprehenderit laboriosam fuga. Eos error ratione eaque, aut excepturi soluta asperiores quae reiciendis laudantium architecto ex aspernatur sunt repudiandae cupiditate fugiat eligendi obcaecati alias! Repellat dolores ullam perferendis ducimus velit incidunt iusto illo temporibus fuga numquam? Cupiditate, deserunt ea tempore voluptatibus optio quasi voluptates, id ratione non dolore cum maxime aliquam natus quis ipsum voluptatum culpa, numquam provident? Nostrum, libero. Iure cupiditate minus aliquid et nobis nemo itaque ut iusto, necessitatibus temporibus, officiis natus! Eaque distinctio vitae recusandae eligendi sunt odit blanditiis velit modi ducimus alias ea harum iusto delectus atque, ratione quis animi dolor illum ipsam qui itaque illo dolorem at magni. Tempore, fugit, excepturi aliquam accusantium architecto nostrum, quasi asperiores nisi harum eaque nemo impedit in! Iste quas facere doloribus quod rem impedit, perspiciatis minima quis aut, vel aperiam maxime sapiente! Nisi eligendi inventore numquam ullam dolorum. Quisquam nesciunt delectus repellat similique veniam beatae odio, officiis ducimus. Quis cumque totam nihil doloribus quisquam tenetur, cupiditate, iure recusandae incidunt ut voluptates, distinctio culpa.
+					</p>
+
+				</article>
+
+		 	</div> <!-- class="principal" -->
+
+
+			<!-- Barra de navegación a la derecha -->
+			<aside>
+
+				<h2>User filter</h2>
+
+				<nav class="menu_lateral"> <!-- Barra de navegación secundaria en la barra lateral -->
+					<ul>
+						<li><a href="#">View user 1</a></li>
+						<li><a href="#">View user 2</a></li>
+						<li><a href="#">View user 3</a></li>
+						<li><a href="#">View user 4</a></li>
+						<li><a href="#">View user 5</a></li>
+					</ul>
+				</nav>
+				
+			</aside>
+
+
+		</div> <!-- class="cuerpo" -->
+
+
+		<!-- Pie de página -->
+		<footer>
+			
+			<!-- logos varios -->
+			<a href="https://www.upv.es/">
+				<img alt="Logotipo" src="img/logos/upv_white.png">
+			</a>
+			
+			<div class="logo_footer">
+				<img alt="Logotipo" src="img/logos/logo_w.png">
+				<h1>Taskify</h1>
+			</div>
+			
+
+			<div class="creditos">
+				<h3>Authors:</h3>
+
+				<hr>
+
+				<ul>
+					<li><a href="mailto:jdelpin@upv.teleco.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Juan Del Pino Mena</a></li>
+					<li><a href="mailto:frazaro@teleco.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Francisco Zapata Romero</a></li>
+					<li><a href="mailto:amfriol@teleco.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Amparo Frigola Olaso</a></li>
+					<li><a href="mailto:ajorlop@upv.teleco.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Alejandro Jorge López</a></li>
+					<li><a href="mailto:dagarbl2@epsa.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">David García Blanes</a></li>
+				</ul>
+			</div>
+
+		</footer>
+
+	</body>
+
+</html>	
+
