@@ -40,8 +40,7 @@ submitButton.addEventListener('click', (event) => {
     console.log(json);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	//si está todo correcto, nos lleva a index.html
-	//abrirnuevapagina();
+	
 });
 
 
@@ -86,6 +85,8 @@ function radio_check(event,botones,check1,check2){
 	//Si están todos los campos rellenados, se envía el formulario
 	alert('Form successfully submitted');
 	event.preventDefault();
+	//si está todo correcto, nos lleva a index.html
+	abrirnuevapagina();
 }
 	
 
