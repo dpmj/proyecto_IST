@@ -6,6 +6,7 @@
 
 aside {
     visibility: collapse;  /* No mostrar barra lateral */
+    display: none;  /* Arreglar hide en chrome */
 }
 
 div.principal {

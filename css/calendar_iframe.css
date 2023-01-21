@@ -35,13 +35,24 @@ div.calendar-nav button {
     border: none;
     color: transparent;
     cursor: pointer;
-    margin-left: 30px;
+    margin-left: 10px;
     color: black;
 }
 
 div.calendar-nav i {
     font-size: 25px;
+    padding: 10px;
+    border-radius: 15px;
     color: black;
+    transition: 0.2s;
+}
+
+div.calendar-nav i:hover {
+    background-color: #79a1f1;
+}
+
+div.calendar-nav i:active {
+    background-color: #3667c9
 }
 
 div.calendar-nav h2 {
