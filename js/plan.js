@@ -7,33 +7,22 @@ document.addEventListener('DOMContentLoaded',
 		categorias_html.addEventListener("dragover", allowDrop);
 		categorias_html.addEventListener("dragend", drop);
 		categorias_html.addEventListener("dragend", dragCanceled);
-		addCategory("Category A");
-		addCategory("Category B");
+		addCategory("Tareas del hogar");
+		addCategory("Lista de la compra");
 	}
 );
-//Cuando hagamo hover poner un cubito de basura
-var cubo_delete = document.createElement("button");
-cubo_delete.id = "cubo_delete";
-cubo_delete.innerHTML = "X";
-cubo_delete.addEventListener("mouseup", (event)=>{event.target.parentElement.remove();});
 
-function appendCubo(event){
-	if(event.target.classList.contains("plan") ||
-	   event.target.classList.contains("categoria")){
-	event.target.insertBefore(cubo_delete, event.target.firstElementChild);
-	}
-
-}
-
-//Fin del cubo de basura
+var tareas_hogar=["Poner lavavajillas", "Limpiar baño", "Doblar ropa"];
+var compra = ["Huevos", "Pan"];
 
 //Soporte para editar cosas
 function edit(event){
-	if(event.target.classList.contains("plan")){
+	if(event.target.nodeName== "P"){
 		textBox(event.target);
 	}
-	else if(event.target.nodeName == "P"){
-		textBox(event.target);
+	else if(event.target.classList.contains("plan")){
+		console.log(event.target);
+		textBox(event.target.getElementsByTagName("P")[0]);
 	}
 }
 
@@ -45,28 +34,57 @@ input.addEventListener("keydown", (event)=>{
 	if(event.key=="Enter" && editing != null){
 		replaceText();
 	}
+	else if(event.key == "Escape"){
+		restoreText();
+	}
 });
 input.addEventListener("blur", replaceText);
+function restoreText(){
+	if(editing != null){
+		input.hidden = true;
+		editing.style.display = "";
+		editing.parentNode.style.display = "";
+		getCategoria(editing).setAttribute("draggable", true);
+	}
+	//editing=null;
+}
+
 function replaceText(){
 	if(editing != null){
-	editing.innerHTML = input.value;
-	input.hidden = true;
-	editing.hidden = false;
-	getCategoria(editing).setAttribute("draggable", true);
+		//caso especial para plan
+		if(editing.classList.contains("plan")){
+			editing.getElementsByTagName("P")[0].innerHTML =input.value;
+			editing.parentNode.style.display = "";
+		}
+		else{
+			editing.innerHTML = input.value;
+		}
+		input.hidden = true;
+		editing.style.display = "";
+		getCategoria(editing).setAttribute("draggable", true);
 	}
-	editing=null;
-
+	//editing=null;
 }
 
 function textBox(element){
 	//El elemento será reemplazado por un input temporalmente
-	editing = element;
+	//Comprobar si es un p de plan - funciona diferente
 	input.value = element.innerHTML;
-	element.parentNode.insertBefore(input, element);
-	input.hidden = false;
-	editing.hidden = true;
-	//Para poder seleccionar texto arrastrando
-	getCategoria(editing).setAttribute("draggable", false);
+	if(element.parentElement.classList.contains("plan")){
+		editing = element.parentElement;
+	 	editing.parentNode.insertBefore(input, editing);
+	 	editing.style.display = "none";
+	}
+	else{
+	 	editing = element; 
+	 	element.parentNode.insertBefore(input, element);
+	 	editing.style.display = "none";
+	}
+	 input.value = element.innerHTML;
+	 input.hidden = false;
+	 //Para poder seleccionar texto arrastrando
+	 getCategoria(editing).setAttribute("draggable", false);
+	
 	document.getElementById("input_id").focus();
 }
 //Fin del soporte para editar cosas
@@ -86,9 +104,6 @@ function addCategory(nombre, planes){
 	//editar texto de elementos
 	categoria.addEventListener("click", edit);
 
-	//Borrar elementos - Categorias
-	categoria.addEventListener("mouseover", appendCubo);
-
 	let p = document.createElement("p");
 	if(typeof nombre !== 'undefined'){
 		p.innerHTML = nombre;
@@ -97,12 +112,19 @@ function addCategory(nombre, planes){
 		p.innerHTML = "Category " + cat_counter;
 		cat_counter++;
 	}
-	categoria.appendChild(p);
 
-	//Crear y añadir lista de planes (si existe)
-	if(typeof planes !== 'undefined' && planes.length > 0){
-		//Crear lista y añadir planes
-	}
+	
+	//Añadir boton de borrado
+	let div_header = document.createElement("div");
+	let del_btn = document.createElement("button");
+	del_btn.innerHTML = "<i class=\"far fa-trash-alt\"></i>";
+	del_btn.addEventListener("mouseup", 
+	(event)=>{
+		getCategoria(event.target).remove();
+	});
+	div_header.appendChild(del_btn);
+	categoria.appendChild(p);
+	categoria.appendChild(div_header);
 
 	//Crear y añadir boton de Añadir plan
 	let btn = document.createElement("button");
@@ -111,6 +133,10 @@ function addCategory(nombre, planes){
 	categoria.appendChild(btn);
 
 	categorias_html.insertBefore(categoria, categorias_html.lastElementChild);
+	//Crear y añadir lista de planes (si existe)
+	if(typeof listas !== 'undefined' && listas.length > 0){
+
+	}
 }
 
 var plan_counter = 1;
@@ -123,8 +149,19 @@ function addPlan(){
 	plan.setAttribute("draggable", true);
 	
 	//Temporal --Recoger user input
-	plan.innerHTML = "Plan "+plan_counter;
+	let p = document.createElement("p");
+
+	p.innerHTML = "Plan "+plan_counter;
 	plan_counter++;
+	plan.appendChild(p);
+	
+	let del_btn = document.createElement("button");
+	del_btn.innerHTML = "<i class=\"far fa-trash-alt\"></i>";
+	del_btn.addEventListener("mouseup", 
+	(event)=>{
+		event.target.parentElement.parentElement.remove();
+	});
+	plan.appendChild(del_btn);
 
 	this.parentElement.insertBefore(plan, this);
 }
