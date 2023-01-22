@@ -41,13 +41,6 @@ submitButton.addEventListener('click', (event) => {
     console.log(json);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-if (count==1){
-	// Se va a poner en el boton de Log In de navegacion el valor del usuario
-	//localStorage.setItem("login", document.getElementById("name").value);
-
-	//si está todo correcto, nos lleva a index.html
-	abrirnuevapagina();
-}
 	
 });
 
@@ -93,7 +86,9 @@ function radio_check(event,botones,check1,check2){
 	//Si están todos los campos rellenados, se envía el formulario
 	alert('Form successfully submitted')
 	count=1;
+	abrirnuevapagina();
 	event.preventDefault();
+	return
 }
 	
 
