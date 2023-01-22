@@ -239,6 +239,26 @@
 							<li><a href="#casos_exito_ccaa">CC.AA.</a></li>
 						</ul>
 					</nav>
+
+					<!-- botón que muestra ayuda contextual al pasar el ratón por encima -->
+					<button id="context_help" class="popup" onclick="myFunction()" title="Click to display page help">
+						Help <i class="far fa-question-circle"></i>
+						<span class="popuptext" id="popuptext">
+							On this screen you can view a wide range of videos organized by topic. 
+
+							Choose the topic of the buttons in the side navigation bar, which will scroll vertically down the page to the chosen section.
+						</span>
+					</button>
+
+					<script>
+						// Cuando se pulsa en el botón se activa el popup, cambiando la clase
+						function myFunction()
+						{
+						  var popup = document.getElementById("popuptext");
+						  popup.classList.toggle("show");
+						}
+					</script>
+
 				</div>
 				
 			</aside>
@@ -263,11 +283,13 @@
 
 				<div id="change_background">
 					<script src="js/change_background.js"></script>
-					<button onclick="change_background_image()">Change background image</button>
+					<button onclick="change_background_image()" title="Click to change the background image">Change background image</button>
 				</div>
 
-				<div class="creditos">
-					<h3>Authors:</h3>
+				<details class="creditos">
+					<summary title="Click to display the list of authors">
+						List of authors
+					</summary>
 
 					<hr>
 
@@ -278,7 +300,7 @@
 						<li><a href="mailto:ajorlop@upv.teleco.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Alejandro Jorge López</a></li>
 						<li><a href="mailto:dagarbl2@epsa.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">David García Blanes</a></li>
 					</ul>
-				</div>
+				</details>
 
 			</div>
 

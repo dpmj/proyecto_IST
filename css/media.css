@@ -4,18 +4,30 @@
 	align-items: stretch;
   	text-align: center;
 }
+
 .principal div>article>h3{
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+
 .principal div>article>p{
 	padding-top: 10px;
 	padding-bottom: 10px;
+	text-align: justify;
 }
+
 .principal div>article>iframe{
-	padding-top: 10px;
-	padding-bottom: 10px;
+	width: 100%;
+	aspect-ratio: calc(16 / 9);
+	margin-top: 15px;
 }
+
 header.titulo_principal {  /* Contenedor flex del header */
     background-color: rgba(189,236,182,0.7);  /* Color verde */
+}
+
+article > div > article {
+	margin: 15px;
+    box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.5);
+	background-color: white;
 }

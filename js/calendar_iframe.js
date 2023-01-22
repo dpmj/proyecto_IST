@@ -232,6 +232,16 @@ showCalendar(0);
 /* FUNCIONALIDAD DE ARRASTRAR Y SOLTAR DEL CALENDARIO */
 
 
+/* Eliminar un plan al pulsar en el botón de borrar plan */
+function deletePlan(clicked_element)
+{
+    // this: botón detele_task
+    // parentElement: plan
+    clicked_element.parentElement.remove();
+}
+
+
+
 // Handler del evento de arrastrar un plan, almacena el último elemento arrastrado
 var lastDragged;
 function dragHandler(ev)
@@ -252,7 +262,10 @@ function addPlan()
 	plan.setAttribute("draggable", true);
 	
 	//Temporal --Recoger user input
-	plan.innerHTML = "<p>Plan " + plan_counter + "</p>";
+	plan.innerHTML = `<p>Plan ${plan_counter}</p>
+                      <button title="Delete this plan" onclick="deletePlan(this)">
+                          <i class="far fa-trash-alt"></i>
+                      </button>`;
 	plan_counter++;
 
     // Sube dos niveles hasta el día actual. Entonces, baja al contenedor "task containers" e inserta la tarea en ella.
