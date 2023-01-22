@@ -367,7 +367,6 @@ aside button#context_help:active {
     border-width: 5px;
     border-style: solid;
     border-color: white transparent transparent transparent;
-    backdrop-filter: blur(12px);
 }
   
 /* Mostrar popup */
@@ -400,7 +399,6 @@ footer div.footer_flex {
     transition: 0.5s;
 }
 
-
 footer a img {
     height: 60px;  /* Logo de la UPV */
 }
@@ -417,7 +415,8 @@ footer details.creditos {
 footer details.creditos hr {
     margin-top: 10px;
     margin-bottom: 10px;
-    border: 1px dashed white;
+    border: none;
+    border-top: 1px dashed white;
 }
 
 footer details.creditos ul {
