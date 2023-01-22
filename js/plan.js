@@ -11,6 +11,65 @@ document.addEventListener('DOMContentLoaded',
 		addCategory("Category B");
 	}
 );
+//Cuando hagamo hover poner un cubito de basura
+var cubo_delete = document.createElement("button");
+cubo_delete.id = "cubo_delete";
+cubo_delete.innerHTML = "X";
+cubo_delete.addEventListener("mouseup", (event)=>{event.target.parentElement.remove();});
+
+function appendCubo(event){
+	if(event.target.classList.contains("plan") ||
+	   event.target.classList.contains("categoria")){
+	event.target.insertBefore(cubo_delete, event.target.firstElementChild);
+	}
+
+}
+
+//Fin del cubo de basura
+
+//Soporte para editar cosas
+function edit(event){
+	if(event.target.classList.contains("plan")){
+		textBox(event.target);
+	}
+	else if(event.target.nodeName == "P"){
+		textBox(event.target);
+	}
+}
+
+//Lo siento, Juan :^)
+var editing = null;
+var input = document.createElement("input");
+input.id="input_id"
+input.addEventListener("keydown", (event)=>{
+	if(event.key=="Enter" && editing != null){
+		replaceText();
+	}
+});
+input.addEventListener("blur", replaceText);
+function replaceText(){
+	if(editing != null){
+	editing.innerHTML = input.value;
+	input.hidden = true;
+	editing.hidden = false;
+	getCategoria(editing).setAttribute("draggable", true);
+	}
+	editing=null;
+
+}
+
+function textBox(element){
+	//El elemento será reemplazado por un input temporalmente
+	editing = element;
+	input.value = element.innerHTML;
+	element.parentNode.insertBefore(input, element);
+	input.hidden = false;
+	editing.hidden = true;
+	//Para poder seleccionar texto arrastrando
+	getCategoria(editing).setAttribute("draggable", false);
+	document.getElementById("input_id").focus();
+}
+//Fin del soporte para editar cosas
 
 var cat_counter = 1;
 function addCategory(nombre, planes){
@@ -24,6 +83,12 @@ function addCategory(nombre, planes){
 	categoria.addEventListener("drop", drop);
 	categoria.addEventListener("dragend", dragCanceled);
 	
+	//editar texto de elementos
+	categoria.addEventListener("click", edit);
+
+	//Borrar elementos - Categorias
+	categoria.addEventListener("mouseover", appendCubo);
+
 	let p = document.createElement("p");
 	if(typeof nombre !== 'undefined'){
 		p.innerHTML = nombre;
@@ -121,10 +186,6 @@ function allowDrop(event){
 			//Comprobamos si lastDragged ya es el ultimo elemento
 
 			categorias_html.insertBefore(category_cue, next);
-		}
-		else{
-			//Comprobamos si el next es lastDragged
-			console.log("El ultimo");
 		}
 		category_cue.hidden = false;
 	}
