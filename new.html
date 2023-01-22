@@ -13,26 +13,24 @@
 		<!-- Hojas de estilo -->
 		<link rel="stylesheet" type="text/css" href="css/general.css">
 		<link rel="stylesheet" type="text/css" href="css/articles.css">
-		<link rel="stylesheet" type="text/css" href="css/new_card.css">
+		<link rel="stylesheet" type="text/css" href="css/registro.css">
 		
 		<!-- Importamos fuentes desde google fonts -->
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet"> 
-
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+		
 		<!-- Favicon -->
 		<link rel="icon" type="image/png" href="img/logos/logo.png">
 
 		<!-- Fontawesome para los símbolos -->
 		<script src="https://kit.fontawesome.com/f7bd64aa23.js" crossorigin="anonymous"></script>
 
-	
 	</head>
 
 	<body>
-		<script src="js/plan.js"></script>
 		<!-- Header que incluye la presentación y un menú de navegación -->
 		<header class="titulo_principal">
-
+					
 			<div class="titulo_principal_flex"> <!-- Contenedor flexible del header para redimensionar cuando cambia la resolución de pantalla -->
 				
 				<!-- logo, título, lema -->
@@ -55,20 +53,21 @@
 					--><li><a id=login href="login.html">Log In</a></li><!--
 					--></ul>
 				</nav>
+			
 			</div>
 
 		</header>
 
-
-		<!-- Cuerpo del contenido -->
-		<div class="cuerpo">
-
+ 	 	<div class="cuerpo">
 
 			<div class="principal">
+
 				<article>
+
 					<div>
 						<h2>Create a new card</h2>
 					</div>
+
 					<form id="nueva_tarea" action="/create-account" method="post">
 						<br>
 						<label for="name">Card's name</label>
@@ -105,10 +104,13 @@
 					<script src="js/registrotareas.js"></script>
 				</article>
 
-		</div> <!--class="principal" -->
+			</div> <!--class="central" -->
 
-	</div> <!-- class="cuerpo" -->
-
+			<!-- Barra de navegación a la derecha -->
+			<aside>
+			</aside>
+		
+		</div> <!-- class="cuerpo" -->
 
 		<!-- Pie de página -->
 		<footer>
@@ -153,4 +155,3 @@
 	</body>
 
 </html>	
-

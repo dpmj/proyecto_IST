@@ -420,4 +420,3 @@ function makeGridDroppable()
         create_buttons[i].onclick = addPlan;
     }
 }
-
