@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded',
 var tareas_hogar=["Poner lavavajillas", "Limpiar baño", "Doblar ropa"];
 var compra = ["Huevos", "Pan"];
 
+var listas =[tareas_hogar, compra];
 //Soporte para editar cosas
 function edit(event){
 	if(event.target.nodeName== "P"){
@@ -89,7 +90,7 @@ function textBox(element){
 }
 //Fin del soporte para editar cosas
 
-var cat_counter = 1;
+var cat_counter = 0;
 function addCategory(nombre, planes){
 	let categoria = document.createElement("div");
 	categoria.classList.add("categoria");
@@ -133,14 +134,20 @@ function addCategory(nombre, planes){
 	categoria.appendChild(btn);
 
 	categorias_html.insertBefore(categoria, categorias_html.lastElementChild);
-	//Crear y añadir lista de planes (si existe)
-	if(typeof listas !== 'undefined' && listas.length > 0){
 
+	//Crear y añadir lista de planes (si existe)
+	if(typeof listas[cat_counter] !== 'undefined' && listas.length > 0){
+		//Recorremos la lista e insertamos planes
+		for(var j = 0; j < listas[cat_counter].length; j++){
+			addPlan(listas[cat_counter][j], categoria);
+		}
 	}
+			
+	cat_counter++;
 }
 
 var plan_counter = 1;
-function addPlan(){
+function addPlan(texto, categoria){
 	let plan = document.createElement("div");
 	plan.classList.add("plan");
 
@@ -150,11 +157,16 @@ function addPlan(){
 	
 	//Temporal --Recoger user input
 	let p = document.createElement("p");
-
-	p.innerHTML = "Plan "+plan_counter;
-	plan_counter++;
+	if(typeof texto !== 'undefined'){
+		p.innerHTML = texto;
+		plan_counter++;
+	}
+	else{
+		p.innerHTML = "Plan "+plan_counter;
+		plan_counter++;
+	}
 	plan.appendChild(p);
-	
+
 	let del_btn = document.createElement("button");
 	del_btn.innerHTML = "<i class=\"far fa-trash-alt\"></i>";
 	del_btn.addEventListener("mouseup", 
@@ -163,7 +175,12 @@ function addPlan(){
 	});
 	plan.appendChild(del_btn);
 
-	this.parentElement.insertBefore(plan, this);
+	if(typeof categoria !== 'undefined'){
+		categoria.insertBefore(plan, categoria.lastElementChild);
+	}
+	else{
+		this.parentElement.insertBefore(plan, this);
+	}
 }
 
 //Buscar elemento al que precederemos en la lista por posicion dentro de una lista
