@@ -4,7 +4,7 @@
 /* ESTILOS DE LA LISTA DE CATEGORÍAS Y SUS ELEMENTOS */
 
 #lista_categorias{
-	overflow-x: scroll; /* Muestra la barra de navegación horizontal cuando es necesaria */
+	overflow-x: auto; /* Muestra la barra de navegación horizontal cuando es necesaria */
 	display: flex;  /* Basado en contenedores flex */
 	flex-direction: row;
 	flex-wrap: nowrap;

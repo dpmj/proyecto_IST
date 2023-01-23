@@ -84,12 +84,12 @@
 
 					<nav class="menu_lateral"> <!-- Barra de navegación secundaria en la barra lateral -->
 						<ul>
-							<li><a id="user_all" href="#">Show all tasks</a></li>
-							<li><a id="user1" href="#">View user 1</a></li>
-							<li><a id="user2" href="#">View user 2</a></li>
-							<li><a id="user3" href="#">View user 3</a></li>
-							<li><a id="user4" href="#">View user 4</a></li>
-							<li><a id="user5" href="#">View user 5</a></li>
+							<li><a id="user_all" title="Click to show all tasks">Show all tasks</a></li>
+							<li><a id="user1" title="Click to show tasks assigned to User 1">View user 1</a></li>
+							<li><a id="user2" title="Click to show tasks assigned to User 2">View user 2</a></li>
+							<li><a id="user3" title="Click to show tasks assigned to User 3">View user 3</a></li>
+							<li><a id="user4" title="Click to show tasks assigned to User 4">View user 4</a></li>
+							<li><a id="user5" title="Click to show tasks assigned to User 5">View user 5</a></li>
 						</ul>
 					</nav>
 
@@ -97,7 +97,7 @@
 					<button id="context_help" class="popup" onclick="myFunction()" title="Click to display page help">
 						Help <i class="far fa-question-circle"></i>
 						<span class="popuptext" id="popuptext">
-							On this page you can create and delete plans in the calendar by clicking on the button that appears when you hover your mouse over it. 
+							On this page you can create and delete plans in the calendar by clicking on the button that appears when you hover your mouse over it. You can also drag and drop tasks between days.
 							
 							When there are many plans on the same day, a scroll bar will appear.
 							
@@ -120,6 +120,8 @@
 
 		</div> <!-- class="cuerpo" -->
 
+
+		<!-- script para permitir el paso de mensajes al iframe -->
 		<script src="js/calendar.js"></script>
 
 
