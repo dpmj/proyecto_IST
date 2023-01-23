@@ -260,3 +260,32 @@ div.day_task_container {
 .plan button:hover {
     color: rgb(200, 0, 0);
 }
+
+
+
+/* ESTILO PARA LOS PLANES ASIGNADOS A USUARIOS */
+
+.plan[data-user="all"] {
+    background-color: rgb(255, 255, 255);
+}
+
+.plan[data-user="user1"] {
+    background-color: rgb(192, 227, 254);
+}
+
+.plan[data-user="user2"] {
+    background-color: rgb(254, 209, 192);
+}
+
+.plan[data-user="user3"] {
+    background-color: rgb(192, 254, 221);
+}
+
+.plan[data-user="user4"] {
+    background-color: rgb(254, 192, 243);
+}
+
+.plan[data-user="user5"] {
+    background-color: rgb(247, 254, 192);
+}
+

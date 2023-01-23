@@ -204,12 +204,14 @@ function showCalendar(prevNextIndicator)
 function prevMonth()
 {
     showCalendar(-1);
+    loadDefaultTasks();  // Carga las tareas por defecto
 }
 
 // Ejecutado cuando se pulsa el botón de mes anterior
 function nextMonth()
 {
     showCalendar(1);
+    loadDefaultTasks();  // Carga las tareas por defecto
 }
 
 // Ejecutada cuando se pulsa el botón de mes actual
@@ -221,6 +223,7 @@ function currentMonth()
         year: new Date().getFullYear(),
     }
     showCalendar(0);
+    loadDefaultTasks();  // Carga las tareas por defecto
 }
 
 
@@ -229,8 +232,12 @@ showCalendar(0);
 
 
 
+
+
 // ///////////////////////////////////////////////////////////////////////////////////////
 /* FUNCIONALIDAD DE ARRASTRAR Y SOLTAR DEL CALENDARIO */
+
+
 
 
 /* Eliminar un plan al pulsar en el botón de borrar plan */
@@ -261,8 +268,11 @@ function addPlan()
 	//Permitir drag
 	plan.addEventListener("dragstart", dragHandler);
 	plan.setAttribute("draggable", true);
+
+    // Atributos de usuario
+	plan.setAttribute("data-user", "all");
 	
-	//Temporal --Recoger user input
+    // 
 	plan.innerHTML = `<p>Plan ${plan_counter}</p>
                       <button title="Delete this plan" onclick="deletePlan(this)">
                           <i class="far fa-trash-alt"></i>
@@ -424,49 +434,263 @@ function makeGridDroppable()
 
 
 
-/* FUNCIONES DE LECTURA DE JSON DESDE UN ARCHIVO DE TAREAS POR DEFECTO */
 
-// const tasks_file_path = "../json/default_calendar_tasks.json";
+/* FUNCIONES ASOCIADAS A LOS BOTONES DEL NAV ASIDE */
 
-// function loadJSON(callback)
-// {   
-//     var xobj = new XMLHttpRequest();
-    
-//     xobj.overrideMimeType("application/json");
-//     xobj.open('GET', tasks_file_path, true);  // Async
+// Recepción de mensajes desde el padre
+// Código de:
+// https://stackoverflow.com/questions/61548354/how-to-postmessage-into-iframe
 
-//     xobj.onreadystatechange = function () {
-//         if (xobj.readyState == 4 && xobj.status == "200") {
-//             callback(xobj.responseText);
-//         }
-//     };
-//     xobj.send(null);  
-// }
-
-
-// var json_data;
-// function readDefaultTasks() 
-// {
-//     loadJSON(function(response) {
-//         json_data = JSON.parse(response);  // Parse JSON string into object
-//     });
-// }
-
-// function readText() {
-//     var iframe = document.getElementById('TasksData');
-//     var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-//     var text = innerDoc.getElementsByTagName('pre')[0].innerText;
-//     console.log(text);
-// }
-
-/* Al parecener leer un archivo local es imposible */
+(function() 
+{
+    "use strict";
+    window.addEventListener("message", (event) => {
+        if (event.data && event.data.sender == "user_filter")
+        {
+            // Al recibir mensaje, filtrar por usuario
+            filterByUser(event.data.message);
+        }
+    });
+})();
 
 
+/* Filtra la visibilidad de los elementos */
+function filterByUser(user) 
+{
+    // Todos los planes mostrados en pantalla
+    let plans = document.getElementsByClassName("plan");
 
-// ///////////////////////////////////////////////////////////////////////////////////////
-// Importar JS con datos
+    if (plans != null)
+    {
+        for (var i = 0; i < plans.length; i++) 
+        {
+            if (user == "all") {
+                plans[i].style.visibility = "visible";
+            }
+            else 
+            {
+                if (plans[i].getAttribute("data-user") == user) {
+                    plans[i].style.visibility = "visible";
+                }
+                else {
+                    plans[i].style.visibility = "collapse";
+                }
+            }
+        }
+    }
+}
 
 
 
 
 
+
+/* TAREAS POR DEFECTO */
+
+
+/* Carga las tareas por defecto en el calendario */
+function loadDefaultTasks() 
+{
+
+    // Recorre el vector de tareas por defecto
+    for (var i = 0; i < default_tasks.length; i++)
+    {
+        // identificador de en qué día colocar el plan
+        let key = new Date(default_tasks[i].date).toUTCString();
+        // Elemento HTML del día
+        let day_HTML = document.getElementById(key);  
+
+        if (day_HTML != null)  // Si el día existe
+        {
+            // Crear plan
+            let plan = document.createElement("div");
+            plan.classList.add("plan");
+
+            // Permitir drag
+            plan.addEventListener("dragstart", dragHandler);
+            plan.setAttribute("draggable", true);
+
+            // Atributo de usuario
+            plan.setAttribute("data-user", default_tasks[i].user)
+
+            // Contenido interno
+            plan.innerHTML = `<p>${default_tasks[i].title}</p>
+                            <button title="Delete this plan" onclick="deletePlan(this)">
+                                <i class="far fa-trash-alt"></i>
+                            </button>`;
+
+            day_HTML.lastElementChild.appendChild(plan);  // Insertar plan
+        }
+    }
+}
+
+
+
+
+/* TAREAS POR DEFECTO */
+/* Se muestran al cargar la página */
+
+var default_tasks = [
+    {
+        title: "Poner lavavajillas",
+        date: "2023/01/20",
+        user: "user1"
+    },
+    {
+        title: "Limpiar baño",
+        date: "2023/01/20",
+        user: "user1"
+    },
+    {
+        title: "Doblar ropa",
+        date: "2023/01/29",
+        user: "user2"
+    },
+    {
+        title: "Limpiar cocina",
+        date: "2023/01/25",
+        user: "user2"
+    },
+    {
+        title: "Revisar proyecto",
+        date: "2023/01/26",
+        user: "user3"
+    },
+    {
+        title: "Recuperaciones",
+        date: "2023/02/06",
+        user: "all"
+    },
+    {
+        title: "Grabar vídeo",
+        date: "2023/01/24",
+        user: "all"
+    },
+    {
+        title: "Examen CHS",
+        date: "2023/01/24",
+        user: "all"
+    },
+    {
+        title: "Examen ESC",
+        date: "2023/01/27",
+        user: "all"
+    },
+    {
+        title: "Examen TIE",
+        date: "2023/02/01",
+        user: "all"
+    },
+    {
+        title: "Examen PSCA",
+        date: "2023/01/31",
+        user: "all"
+    },
+    {
+        title: "Examen IST",
+        date: "2023/01/30",
+        user: "all"
+    },
+    {
+        title: "Estudiar",
+        date: "2023/01/09",
+        user: "all"
+    },
+    {
+        title: "Reyes magos",
+        date: "2023/01/06",
+        user: "all"
+    },
+    {
+        title: "Pasar apuntes a limpio",
+        date: "2023/01/11",
+        user: "user1"
+    },
+    {
+        title: "Llamar al banco",
+        date: "2023/01/11",
+        user: "user3"
+    },
+    {
+        title: "Prácticas",
+        date: "2023/01/13",
+        user: "user2"
+    },
+    {
+        title: "Proyecto CHS",
+        date: "2023/01/16",
+        user: "all"
+    },
+    {
+        title: "Navidad",
+        date: "2022/12/25",
+        user: "all"
+    },
+    {
+        title: "Nochebuena",
+        date: "2022/12/24",
+        user: "all"
+    },
+    {
+        title: "Año nuevo",
+        date: "2023/01/01",
+        user: "all"
+    },
+    {
+        title: "Cumpleaños Pepito",
+        date: "2023/01/21",
+        user: "user4"
+    },
+    {
+        title: "Feliz jueves",
+        date: "2023/02/02",
+        user: "user4"
+    },
+    {
+        title: "Proyecto IST",
+        date: "2023/01/30",
+        user: "all"
+    },
+    {
+        title: "Reunión Tuna",
+        date: "2023/02/15",
+        user: "user1"
+    },
+    {
+        title: "Día de andalucía",
+        date: "2023/02/28",
+        user: "all"
+    },
+    {
+        title: "Poner lavavajillas",
+        date: "2023/02/18",
+        user: "user1"
+    },
+    {
+        title: "Limpiar baño",
+        date: "2023/02/07",
+        user: "user1"
+    },
+    {
+        title: "Doblar ropa",
+        date: "2023/02/05",
+        user: "user2"
+    },
+    {
+        title: "Doblar ropa",
+        date: "2023/02/05",
+        user: "user5"
+    },
+    {
+        title: "Felicitar al abuelo",
+        date: "2023/01/03",
+        user: "user5"
+    },
+    {
+        title: "Limpiar cocina",
+        date: "2023/02/22",
+        user: "user2"
+    },
+];
+
+loadDefaultTasks();
