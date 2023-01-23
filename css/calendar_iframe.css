@@ -177,6 +177,7 @@ div.day_task_container {
     width: 100%;
     height: calc(110px - 38px);
     overflow-y: auto;  /* No mostrar barras de desplazamiento hasta que sea necesario */
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
 }

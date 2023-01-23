@@ -543,7 +543,6 @@ function edit(event){
 	}
 	else if (event.target.classList.contains("plan"))
     {
-		console.log(event.target);
 		textBox(event.target.getElementsByTagName("P")[0]);
 	}
 }
