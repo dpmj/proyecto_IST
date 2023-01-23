@@ -9,7 +9,7 @@ article {
 
 
 article iframe#calendar_iframe_id {
-    min-height: 720px;
+    height: 780px;
     width: 100%;
     margin: 0;
     padding: 0;

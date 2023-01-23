@@ -4,6 +4,7 @@
  */
 
 
+
 // ///////////////////////////////////////////////////////////////////////////////////////
 // Variables globales
 
@@ -420,4 +421,52 @@ function makeGridDroppable()
         create_buttons[i].onclick = addPlan;
     }
 }
+
+
+
+/* FUNCIONES DE LECTURA DE JSON DESDE UN ARCHIVO DE TAREAS POR DEFECTO */
+
+// const tasks_file_path = "../json/default_calendar_tasks.json";
+
+// function loadJSON(callback)
+// {   
+//     var xobj = new XMLHttpRequest();
+    
+//     xobj.overrideMimeType("application/json");
+//     xobj.open('GET', tasks_file_path, true);  // Async
+
+//     xobj.onreadystatechange = function () {
+//         if (xobj.readyState == 4 && xobj.status == "200") {
+//             callback(xobj.responseText);
+//         }
+//     };
+//     xobj.send(null);  
+// }
+
+
+// var json_data;
+// function readDefaultTasks() 
+// {
+//     loadJSON(function(response) {
+//         json_data = JSON.parse(response);  // Parse JSON string into object
+//     });
+// }
+
+// function readText() {
+//     var iframe = document.getElementById('TasksData');
+//     var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+//     var text = innerDoc.getElementsByTagName('pre')[0].innerText;
+//     console.log(text);
+// }
+
+/* Al parecener leer un archivo local es imposible */
+
+
+
+// ///////////////////////////////////////////////////////////////////////////////////////
+// Importar JS con datos
+
+
+
+
 

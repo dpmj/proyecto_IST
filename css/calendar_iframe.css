@@ -87,7 +87,7 @@ div.days-of-week {
 }
 
 div.prev, div.next, div.current {
-    height: 100px;
+    height: 110px;
     transition: 0.2s;
     border-top: 1px solid rgba(162, 162, 162, 0.5);
     border-left: 1px solid rgba(162, 162, 162, 0.5);
@@ -108,7 +108,7 @@ div.today {
 }
 
 div.prev:hover, div.next:hover, div.current:hover {
-    height: 100px;
+    /* height: 100px; */
     box-shadow: inset 0px 0px 0px 2px rgb(0, 0, 0);
     /* margin: 0 auto; */
 }
@@ -175,7 +175,7 @@ button.create_task:active
 
 div.day_task_container {
     width: 100%;
-    height: calc(100px - 38px);
+    height: calc(110px - 38px);
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
