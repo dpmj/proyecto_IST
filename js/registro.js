@@ -2,7 +2,6 @@
 const form = document.getElementById('formulario');
 const submitButton = form.querySelector('input[type="submit"]');
 let campos = ["name", "email", "password", "confirm-password", "country"];
-var count=0;
 
 // Adición del prefijo del país correspondiente
 const select = document.querySelector('#country');
@@ -22,6 +21,7 @@ submitButton.addEventListener('click', (event) => {
 	//Mensaje mostrado diciendo que las contraseñas no son correctas
 	const pass = form.querySelectorAll('input[type="password"]');
 	const message = document.querySelector('#igualdad'); //seleccionamos div con id igualdad
+
 	if(pass[0].value!==pass[1].value){
 		message.textContent = 'Passwords are not the same';
 		message.setAttribute('style', 'color:red');
@@ -40,7 +40,6 @@ submitButton.addEventListener('click', (event) => {
 	// Hacer algo con el objeto JSON
     console.log(json);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	
 });
 
