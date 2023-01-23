@@ -73,8 +73,19 @@
 					<h2>Log In</h2>
 
 					<input class="entradas" id="usuario" type="text" name="usuario" value="" placeholder="User">
-					<input class="entradas" id="password" type="password" name="contraseña" value="" placeholder="Password">	
-					<input class="btnLogin" type="button" value="Acceder" onclick="logIn()">
+					<input class="entradas" id="password" type="password" name="contraseña" value="" placeholder="Password">
+					
+					<input type="checkbox" id="mostrar" name="mostrar" onclick="mostrar()" >
+					<label for="mostrar">Show password</label>
+
+					<input class="btnLogin" id="boton" type="button" value="Log on" onclick="logIn()">
+					
+					<p class="forget">
+						Do you forgot your password? <a href="mailto:soporteplan@upv.teleco.es?Subject=I%20lost%20my%20password&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Recover password</a>
+					</p>
+					<p class="forget">
+						Do you want to create an account? <a href="registro.html">Create account</a>
+					</p>
 
 				</article>
 
@@ -118,7 +129,7 @@
 					<ul>
 						<li><a href="mailto:jdelpin@upv.teleco.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Juan Del Pino Mena</a></li>
 						<li><a href="mailto:frazaro@teleco.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Francisco Zapata Romero</a></li>
-						<li><a href="mailto:amfriol@teleco.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Amparo Frigola Olaso</a></li>
+						<li><a href="mailto:amfriol@teleco.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Amparo Frígola Olaso</a></li>
 						<li><a href="mailto:ajorlop@upv.teleco.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">Alejandro Jorge López</a></li>
 						<li><a href="mailto:dagarbl2@epsa.upv.es?Subject=Hola%20amigo&body=Env%C3%ADo%20correo%20electr%C3%B3nico.%0D%0A%0D%0AUn%20saludo.">David García Blanes</a></li>
 					</ul>

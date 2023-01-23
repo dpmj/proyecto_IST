@@ -2,6 +2,7 @@
 const form = document.getElementById('formulario');
 const submitButton = form.querySelector('input[type="submit"]');
 let campos = ["name", "email", "password", "confirm-password", "country"];
+var count=0;
 
 // Adición del prefijo del país correspondiente
 const select = document.querySelector('#country');
@@ -38,7 +39,7 @@ submitButton.addEventListener('click', (event) => {
 	var json = JSON.stringify(Object.fromEntries(formData));
 	// Hacer algo con el objeto JSON
     console.log(json);
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	
 });
@@ -83,10 +84,11 @@ function radio_check(event,botones,check1,check2){
 	}
 
 	//Si están todos los campos rellenados, se envía el formulario
-	alert('Form successfully submitted');
-	event.preventDefault();
-	//si está todo correcto, nos lleva a index.html
+	alert('Form successfully submitted')
+	count=1;
 	abrirnuevapagina();
+	event.preventDefault();
+	return
 }
 	
 

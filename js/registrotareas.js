@@ -5,13 +5,28 @@ let campos = ["name","descripcion"];
 
 //Añadir un manejador de evento para el evento de envío del formulario
 submitButton.addEventListener('click', (event) => {
+
+	//Mensaje mostrado diciendo que las contraseñas no son correctas
+	const fields = form.querySelectorAll('input[type="text"], input[type="date"], input[type="radio"]');
+	var textarea = document.getElementById("descripcion");
+	const message = document.querySelector('#igualdad'); //seleccionamos div con id igualdad
+	if(fields[0].value == "" || fields[1].value == "" || fields[2].value == false){
+		message.textContent = 'There is an empty field';
+		message.setAttribute('style', 'color:red');
+	}else{
+		message.textContent = '';
+	}
+	if (textarea.value === "") {
+		message.textContent = 'There is an empty field';
+		message.setAttribute('style', 'color:red');
+	}else{
+		message.textContent = '';
+	}
+
 	const botones = form.querySelectorAll('input[type="radio"]');
 
 	//obtener todos los campos de texto del formulario
-	verificar(event, campos, botones);
-
-	//Si se han rellenado todos los campos, se visualiza la pagina index.html
-	abrirnuevapagina(); 
+	verificar(event, campos, botones); 
 });
 
 
@@ -50,7 +65,11 @@ function verificar(event, campos, botones) {
 
 	//Si están todos los campos rellenados, se envía el formulario
 	alert('Form successfully submitted');
+	//Si se han rellenado todos los campos, se visualiza la pagina index.html
+	abrirnuevapagina();
 	event.preventDefault();
+	return
+
 }
 
 function abrirnuevapagina(){
