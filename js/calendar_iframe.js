@@ -35,6 +35,10 @@ var create_buttons;
 // ///////////////////////////////////////////////////////////////////////////////////////
 // FUNCIONES
 
+
+/* FUNCIÓN DE GENERACIÓN DEL CALENDARIO */
+
+
 // Función que construye un array de objetos fecha que serán expuestos en la rejilla
 function datesForGrid(year, month)
 {
@@ -231,13 +235,12 @@ function currentMonth()
 showCalendar(0);
 
 
-
-
-
+// Fin funciones de generación del calendario
 // ///////////////////////////////////////////////////////////////////////////////////////
+
+
+
 /* FUNCIONALIDAD DE ARRASTRAR Y SOLTAR DEL CALENDARIO */
-
-
 
 
 /* Eliminar un plan al pulsar en el botón de borrar plan */
@@ -247,7 +250,6 @@ function deletePlan(clicked_element)
     // parentElement: plan
     clicked_element.parentElement.remove();
 }
-
 
 
 // Handler del evento de arrastrar un plan, almacena el último elemento arrastrado
@@ -271,8 +273,11 @@ function addPlan()
 
     // Atributos de usuario
 	plan.setAttribute("data-user", "all");
+
+    // Para editar el texto de los elementos
+    plan.addEventListener("click", edit);
 	
-    // 
+    // Contenido del html con texto placeholder
 	plan.innerHTML = `<p>Plan ${plan_counter}</p>
                       <button title="Delete this plan" onclick="deletePlan(this)">
                           <i class="far fa-trash-alt"></i>
@@ -433,9 +438,11 @@ function makeGridDroppable()
 }
 
 
+// Fin funciones de gestión del drag and drop 
+// ///////////////////////////////////////////////////////////////////////////////////////
 
 
-/* FUNCIONES ASOCIADAS A LOS BOTONES DEL NAV ASIDE */
+/* FUNCIONES ASOCIADAS A LOS BOTONES DEL NAV ASIDE: FILTRADO POR USUARIOS */
 
 // Recepción de mensajes desde el padre
 // Código de:
@@ -466,14 +473,17 @@ function filterByUser(user)
         {
             if (user == "all") {
                 plans[i].style.visibility = "visible";
+                plans[i].style.display = "block";  // para chrome
             }
             else 
             {
                 if (plans[i].getAttribute("data-user") == user) {
                     plans[i].style.visibility = "visible";
+                    plans[i].style.display = "block";  // para chrome
                 }
                 else {
                     plans[i].style.visibility = "collapse";
+                    plans[i].style.display = "none";  // para chrome
                 }
             }
         }
@@ -481,7 +491,89 @@ function filterByUser(user)
 }
 
 
+// Fin funciones de gestión de los mensajes procedentes del documento padre
+// ///////////////////////////////////////////////////////////////////////////////////////
 
+
+
+/* PERMITIR EDITAR EL CONTENIDO DE LOS ELEMENTOS PLAN */
+// NOTA: portado de plan.js y adaptado al calendario
+
+var editing = null;
+var input = document.createElement("input");
+
+input.id = "input_id"
+input.addEventListener("keydown", (event)=>
+{
+	if(event.key=="Enter" && editing != null) {
+		replaceText();
+	}
+	else if(event.key == "Escape") {
+		restoreText();
+	}
+});
+
+input.addEventListener("blur", replaceText);
+
+function textBox(element) 
+{
+	//El elemento será reemplazado por un input temporalmente
+	//Comprobar si es un p de plan - funciona diferente
+
+	input.value = element.innerHTML;
+
+	if (element.parentElement.classList.contains("plan"))
+    {
+		editing = element.parentElement;
+	 	editing.parentNode.insertBefore(input, editing);
+	 	editing.style.display = "none";
+	}
+
+    input.value = element.innerHTML;
+    input.hidden = false;
+    //Para poder seleccionar texto arrastrando
+	
+	document.getElementById("input_id").focus();
+}
+
+function edit(event){
+	if (event.target.nodeName== "P")
+    {
+		textBox(event.target);
+	}
+	else if (event.target.classList.contains("plan"))
+    {
+		console.log(event.target);
+		textBox(event.target.getElementsByTagName("P")[0]);
+	}
+}
+
+
+function restoreText()
+{
+	if (editing != null){
+		input.hidden = true;
+		editing.style.display = "";
+		editing.parentNode.style.display = "";
+	}
+}
+
+function replaceText(){
+	if(editing != null)
+    {
+		if(editing.classList.contains("plan"))
+        {
+			editing.getElementsByTagName("P")[0].innerHTML =input.value;
+			editing.parentNode.style.display = "";
+		}
+		input.hidden = true;
+		editing.style.display = "";
+	}
+}
+
+
+// Fin funciones de edición del contenido de los planes
+// ///////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -513,6 +605,9 @@ function loadDefaultTasks()
             // Atributo de usuario
             plan.setAttribute("data-user", default_tasks[i].user)
 
+            // Para editar el texto de los elementos
+            plan.addEventListener("click", edit);
+
             // Contenido interno
             plan.innerHTML = `<p>${default_tasks[i].title}</p>
                             <button title="Delete this plan" onclick="deletePlan(this)">
@@ -525,10 +620,13 @@ function loadDefaultTasks()
 }
 
 
+// Fin funciones de gestión de las tareas por defecto
+// ///////////////////////////////////////////////////////////////////////////////////////
 
 
 /* TAREAS POR DEFECTO */
-/* Se muestran al cargar la página */
+
+/* Vector de objetos de javascript. Se muestran al cargar la página */
 
 var default_tasks = [
     {
@@ -694,3 +792,6 @@ var default_tasks = [
 ];
 
 loadDefaultTasks();
+
+
+

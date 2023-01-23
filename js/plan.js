@@ -27,7 +27,8 @@ function edit(event){
 	}
 }
 
-//Lo siento, Juan :^)
+//Lo siento, Juan :^) 
+// No te preocupes, uno se acostumbra a lo malo 
 var editing = null;
 var input = document.createElement("input");
 input.id="input_id"
