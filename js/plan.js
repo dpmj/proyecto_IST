@@ -9,11 +9,104 @@ document.addEventListener('DOMContentLoaded',
 		categorias_html.addEventListener("dragend", dragCanceled);
 		addCategory("Tareas del hogar");
 		addCategory("Lista de la compra");
-	}
+
+var user_all = document.getElementById("user_all");
+user_all.addEventListener("click", ()=>{
+	filterByUser("all");
+});
+var user1 = document.getElementById("user1");
+user1.addEventListener("click", ()=>{
+	filterByUser("user1");
+});
+var user2 = document.getElementById("user2");
+user2.addEventListener("click", ()=>{
+	filterByUser("user2");
+});
+var user3 = document.getElementById("user3");
+user3.addEventListener("click", ()=>{
+	filterByUser("user3");
+});
+var user4 = document.getElementById("user4");
+user4.addEventListener("click", ()=>{
+	filterByUser("user4");
+});
+var user5 = document.getElementById("user5");
+user5.addEventListener("click", ()=>{
+	filterByUser("user5");
+});
+
+}
 );
 
 var tareas_hogar=["Poner lavavajillas", "Limpiar baño", "Doblar ropa"];
-var compra = ["Huevos", "Pan"];
+var compra = [{title: "Huevos", user: "user1"}, {title:"Pan", user: "user3"}];
+var tareas_hogar = [
+	    {
+		            title: "Poner lavavajillas",
+		            date: "2023/01/20",
+		            user: "user1"
+		        },
+	    {
+		            title: "Limpiar baño",
+		            date: "2023/01/20",
+		            user: "user1"
+		        },
+	    {
+		            title: "Doblar ropa",
+		            date: "2023/01/29",
+		            user: "user2"
+		        },
+	    {
+		            title: "Limpiar cocina",
+		            date: "2023/01/25",
+		            user: "user2"
+		        },
+	    {
+		            title: "Revisar proyecto",
+		            date: "2023/01/26",
+		            user: "user3"
+		        },
+	    {
+		            title: "Recuperaciones",
+		            date: "2023/02/06",
+		            user: "all"
+		        },
+	    {
+		            title: "Grabar vídeo",
+		            date: "2023/01/24",
+		            user: "user3"
+		        },
+	    {
+		            title: "Examen CHS",
+		            date: "2023/01/24",
+		            user: "user2"
+		        },
+	    {
+		            title: "Examen ESC",
+		            date: "2023/01/27",
+		            user: "all"
+		        },
+	    {
+		            title: "Examen TIE",
+		            date: "2023/02/01",
+		            user: "user4"
+		        },
+	    {
+		            title: "Examen PSCA",
+		            date: "2023/01/31",
+		            user: "user5"
+		        },
+	    {
+		            title: "Examen IST",
+		            date: "2023/01/30",
+		            user: "all"
+		        },
+	    {
+		            title: "Estudiar",
+		            date: "2023/01/09",
+		            user: "user5"
+		        },
+];
 
 var listas =[tareas_hogar, compra];
 //Soporte para editar cosas
@@ -48,7 +141,7 @@ function restoreText(){
 		editing.parentNode.style.display = "";
 		getCategoria(editing).setAttribute("draggable", true);
 	}
-	//editing=null;
+	editing=null;
 }
 
 function replaceText(){
@@ -65,7 +158,7 @@ function replaceText(){
 		editing.style.display = "";
 		getCategoria(editing).setAttribute("draggable", true);
 	}
-	//editing=null;
+	editing=null;
 }
 
 function textBox(element){
@@ -90,6 +183,21 @@ function textBox(element){
 	document.getElementById("input_id").focus();
 }
 //Fin del soporte para editar cosas
+
+//Filtrado de usuarios
+function filterByUser(user){
+	//display -> none a los planes que sean diferentes
+	let planes = categorias_html.getElementsByClassName("plan");
+	for(let i = 0; i < planes.length; i++){
+		let atrib = planes[i].getAttribute("data-user");
+		if(atrib == "all" || atrib == user || user == "all"){
+			planes[i].style.display = "";		
+		}
+		else{
+			planes[i].style.display = "none";		
+		}
+	}
+}
 
 var cat_counter = 0;
 function addCategory(nombre, planes){
@@ -140,7 +248,7 @@ function addCategory(nombre, planes){
 	if(typeof listas[cat_counter] !== 'undefined' && listas.length > 0){
 		//Recorremos la lista e insertamos planes
 		for(var j = 0; j < listas[cat_counter].length; j++){
-			addPlan(listas[cat_counter][j], categoria);
+			addPlan(listas[cat_counter][j].title, listas[cat_counter][j].user, categoria);
 		}
 	}
 			
@@ -148,7 +256,7 @@ function addCategory(nombre, planes){
 }
 
 var plan_counter = 1;
-function addPlan(texto, categoria){
+function addPlan(texto, user, categoria){
 	let plan = document.createElement("div");
 	plan.classList.add("plan");
 
@@ -158,7 +266,8 @@ function addPlan(texto, categoria){
 	
 	//Temporal --Recoger user input
 	let p = document.createElement("p");
-	if(typeof texto !== 'undefined'){
+	if(typeof texto === "string"){
+		console.log(texto);
 		p.innerHTML = texto;
 		plan_counter++;
 	}
@@ -167,6 +276,13 @@ function addPlan(texto, categoria){
 		plan_counter++;
 	}
 	plan.appendChild(p);
+
+	if(typeof user === "string"){
+		plan.setAttribute("data-user", user);
+	}
+	else{
+		plan.setAttribute("data-user", "all");
+	}
 
 	let del_btn = document.createElement("button");
 	del_btn.innerHTML = "<i class=\"far fa-trash-alt\"></i>";
