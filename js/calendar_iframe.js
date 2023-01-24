@@ -473,13 +473,13 @@ function filterByUser(user)
         {
             if (user == "all") {
                 plans[i].style.visibility = "visible";
-                plans[i].style.display = "block";  // para chrome
+                plans[i].style.display = "flex";  // para chrome
             }
             else 
             {
                 if (plans[i].getAttribute("data-user") == user) {
                     plans[i].style.visibility = "visible";
-                    plans[i].style.display = "block";  // para chrome
+                    plans[i].style.display = "flex";  // para chrome
                 }
                 else {
                     plans[i].style.visibility = "collapse";
