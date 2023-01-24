@@ -39,6 +39,9 @@
 .categoria > p {
 	font-weight: bold;
 	text-align: center;
+	margin: 0;
+	padding: 0;
+	padding-top: 5px;
 	margin-bottom: 15px;
 	padding-bottom: 15px;
 	border-bottom: 1px dashed black;
@@ -47,12 +50,19 @@
 /* Text input  */
 input{
 	background-color:white;
-	padding: 15px;
+	padding: 10px;
 	margin-bottom: 15px;
-    	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.5);
 	border-radius: 15px;
-	transition: 0.3s;
+	border: 0 none;
 }
+
+.categoria > input {
+	padding: 5px 10px 5px 10px;
+	margin-bottom: 26px;
+	font-weight: bold;
+	text-align: center;
+}
+
 
 
 /* PLANES */
@@ -185,3 +195,35 @@ button#add_category:hover {
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 0px 5px 30px 0px rgba(0,0,0,0.7);
 }
+
+
+
+
+/* ESTILO PARA LOS PLANES ASIGNADOS A USUARIOS */
+
+.plan[data-user="all"] {
+    background-color: rgb(255, 255, 255);
+}
+
+.plan[data-user="user1"] {
+    background-color: rgb(192, 227, 254);
+}
+
+.plan[data-user="user2"] {
+    background-color: rgb(254, 209, 192);
+}
+
+.plan[data-user="user3"] {
+    background-color: rgb(192, 254, 221);
+}
+
+.plan[data-user="user4"] {
+    background-color: rgb(254, 192, 243);
+}
+
+.plan[data-user="user5"] {
+    background-color: rgb(247, 254, 192);
+}
+
+
+
