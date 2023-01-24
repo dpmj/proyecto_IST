@@ -1,11 +1,17 @@
 // Obtener el formulario y el botón de envío
 const form = document.getElementById('formulario');
+const titulo_form = document.getElementById("titulo_formulario");  
 const submitButton = form.querySelector('input[type="submit"]');
+
+// iframe donde mostrar la respuesta del servidor
+const iframe_respuesta = document.getElementById("form_response");  
+
 let campos = ["name", "email", "password", "confirm-password", "country"];
 
 // Adición del prefijo del país correspondiente
 const select = document.querySelector('#country');
 const input = document.querySelector('#prefix');
+
 select.addEventListener('change', () => {
 	const prefijo = select.value;
 	input.placeholder = prefijo;
@@ -85,12 +91,57 @@ function radio_check(event,botones,check1,check2){
 	//Si están todos los campos rellenados, se envía el formulario
 	alert('Form successfully submitted')
 	count=1;
-	abrirnuevapagina();
+	enviarFormularioServidor();  // Una vez comprobados los campos, se envía el formulario al servidor flask
 	event.preventDefault();
 	return
 }
 	
 
-function abrirnuevapagina(){
-	window.location.assign('index.html');
+/**
+ * Envía los datos al servidor Flask e interpreta la respuesta
+ */
+function enviarFormularioServidor()
+{
+	var url = "http://127.0.0.1:5000/form_response"  // URL de nuestro servidor flask
+	var return_data;  // Datos de vuelta desde el servidor
+
+	var formData = new FormData(form);  // Convertir el FormData en un objeto JSON
+	var send_data = JSON.stringify(Object.fromEntries(formData));  // Datos del formulario a enviar
+
+	var xhr = new XMLHttpRequest();  // Objeto XML HTTP del navegador para realizar peticiones HTTP
+
+	xhr.responseType = 'document';  // De vuelta viene un documento HTML
+
+	// Cuando se reciba la respuesta, esta sección de código se ejecutará
+	xhr.onreadystatechange = () => 
+	{
+		if (xhr.status == 200 && xhr.readyState == 4)
+		{
+			return_data = xhr.responseXML;  // Datos de respuesta
+			mostrarRespuesta(return_data);  // Muestra la respuesta en iframe objetivo
+		}
+	};
+
+	xhr.open("POST", url, true);  // POST a la URL necesaria 
+	xhr.setRequestHeader("Content-Type", "application/json");  // Tipo de datos que se envían al servidor
+	xhr.send(send_data);  // Enviar petición
+
 }
+
+
+function mostrarRespuesta(return_data)
+{
+	// console.log(return_data);
+	var html_iframe = new XMLSerializer().serializeToString(return_data);  // datos que mostrar
+	// Interpretar la respuesta
+	
+	form.style.display = "none";  // Escondemos el formulario y su título
+	titulo_form.style.display = "none"; 
+
+	// Mostramos la respuesta del servidor dentro del iframe
+	iframe_respuesta.contentWindow.document.documentElement.innerHTML = html_iframe;
+
+	iframe_respuesta.style.height = "200px";
+}
+
+

@@ -61,12 +61,12 @@
 
 				<article>
 
-					<div>
+					<div id="titulo_formulario">
 						<h2>Create a new account</h2>
 						<p>Enjoy the benefits of being a Taskify member!</p>
 					</div>
 
-					<form id="formulario" action="/create-account" method="post">
+					<form id="formulario">
 						<br>
 						<label for="name">User</label>
 						<br>
@@ -134,8 +134,14 @@
 						<input type="submit" id="boton_envio" value="Create account">
 						<div id="vacio"></div>
 					</form>
+					
+					<!-- En este iframe se mostrará la respuesta del servidor flask! -->
+					<iframe id="form_response"></iframe>
+
+					<!-- Script que interpreta el formulario de registro -->
 					<script src="js/registro.js"></script>
 				</article>
+
 
 			</div> <!--class="central" -->
 

@@ -117,3 +117,15 @@ form div {
 }
 
 /* rgb(150, 10, 120) */
+
+
+
+/* ESTILOS DEL IFRAME DE RESPUESTA DEL SERVIDOR */
+
+iframe#form_response {
+    width: 100%;
+    height: 0px;  /* Altura inicial - Será editada por el JS */
+    padding: 0;
+    margin: 0;
+    border: 0 none;
+}

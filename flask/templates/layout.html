@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Respuesta Flask a formulario de inscripción</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Inter, Helvetica, sans-serif;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: green;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: black;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+
+        p {
+            font-size: 1em;
+            padding: 0;
+            margin: 0 0 5px 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    {% block heading %}{% endblock %}
+    
+    {% block body %}
+    {% endblock %}
+    
+</body>
+
+</html>
