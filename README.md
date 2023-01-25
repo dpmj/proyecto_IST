@@ -6,13 +6,13 @@
 - **Calendar:** Planificador de tareas mensual. Crea planes haciendo click en el botón de crear tarea que aparece al pasar el ratón por encima de los días del mes actual. Puedes editar su contenido una vez creado. Reordena planes en el mes arrastrando y soltando. Puedes navegar al mes siguiente / mes anterior y volver al mes actual con los botones designados para ello en la barra de navegación del calendario. Filtra la vista por las tareas asignadas a cada usuario en la barra lateral.
 - **Multimedia:** Colección de vídeos de historias de éxito. Navega verticalmente por la página haciendo click en los botones de la barra lateral. 
 - **New card:** Crea nuevas tarjetas de forma avanzada por medio de un formulario.
-- **Register:** Regístrate en la página web por medio de este formulario. *Nota: el resultado se envía a un servidor Flask, que hay que ejecutar en `localhost`, ver apartado más abajo*.
+- **Register:** Regístrate en la página web por medio de este formulario. *Nota: el resultado se envía como JSON a un servidor Flask el cual devuelve una confirmación. Dicho servidor se ejecuta en `localhost`, ver apartado más abajo*.
 - **Log In:** Inicia sesión en nuestro servicio indicando nombre de usuario y contraseña.
 
 ## Otras características
 
-- Cambia el fondo de pantalla con el botón situado en el footer.
-- Si tienes dudas, puedes consultar 
+- Cambia el fondo de pantalla a otro aleatorio con el botón situado en el footer.
+- Si tienes dudas, puedes consultar la ayuda en el botón situado en el aside, aparecerá un *popup* con información sobre la página que estás viendo.
 
 ## Cómo ejecutar el servidor de Flask
 
