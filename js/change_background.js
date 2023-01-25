@@ -79,9 +79,17 @@ function change_background_image()
 
         /* Insertar URL en el estilo */
         HTML_BODY.style.backgroundImage = `url(${photo_url})`;
+        
+        // Guardar fecha de expiración de la cookie
+        var days = 7;  // días en los que expira la cookie
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));  // fecha de caducidad
 
-        // Guardar cookie del fondo de pantalla, que se borra cuando se cierre el navegador
-        document.cookie = `background_image=${photo_url}`;
+        // Guardar cookie del fondo de pantalla con caducidad
+        document.cookie = `background_image=${photo_url}; expires=${date.toGMTString()}`;
+        
+        // NOTA: los navegadores basados en chromium parecen ignorar las cookies
+        // de las páginas locales. En firefox esto no ocurre.
     }
 }
 
