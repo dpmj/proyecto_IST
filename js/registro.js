@@ -3,94 +3,112 @@ const form = document.getElementById('formulario');
 const titulo_form = document.getElementById("titulo_formulario");  
 const submitButton = form.querySelector('input[type="submit"]');
 
-// iframe donde mostrar la respuesta del servidor
-const iframe_respuesta = document.getElementById("form_response");  
-
-let campos = ["name", "email", "password", "confirm-password", "country"];
+// Variables globales
+var count_gender = 0;
+var count_interests = 0;
+var count_news = 0;
+var elements = form.elements;
 
 // Adición del prefijo del país correspondiente
 const select = document.querySelector('#country');
 const input = document.querySelector('#prefix');
-
 select.addEventListener('change', () => {
 	const prefijo = select.value;
 	input.placeholder = prefijo;
 });
 
+// iframe donde mostrar la respuesta del servidor
+const iframe_respuesta = document.getElementById("form_response");  
+
+
 //Añadir un manejador de evento para el evento de envío del formulario
 submitButton.addEventListener('click', (event) => {
-	const fields = form.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="radio"], input[type="country"], input[type="checkbox"]');
-	const botones = form.querySelectorAll('input[type="radio"]');
-	const check1 = form.querySelectorAll('input[type="checkbox"].inter');
-	const check2 = form.querySelectorAll('input[type="checkbox"].otro');
+	
+	// Creación del vector de objetos JS
+	let formElements = form.elements; //recoger los elementos del formulario
+	let formDataArray = []; //crear un vector vacío
 
-	//Mensaje mostrado diciendo que las contraseñas no son correctas
-	const pass = form.querySelectorAll('input[type="password"]');
-	const message = document.querySelector('#igualdad'); //seleccionamos div con id igualdad
-
-	if(pass[0].value!==pass[1].value){
-		message.textContent = 'Passwords are not the same';
-		message.setAttribute('style', 'color:red');
-	}else{
-		message.textContent = '';
+	for(let i = 0; i < formElements.length; i++) {
+		let obj = {};
+		obj[formElements[i].name] = formElements[i].value;
+		// agregar el vector al objeto
+		formDataArray.push(obj);
 	}
+	console.log(formDataArray);
 
-	//obtener todos los campos de texto del formulario
-	verificar(event, campos, botones, check1, check2);
+	// Mensaje mostrado diciendo que las contrasenyas no son correctas
+	const message = document.querySelector('#igualdad'); //seleccionamos div con id igualdad
+	contrasenyas(formDataArray,message); // Primera funcion donde se trabaja con un vector de tipo Javascript
 
-/////////////////////////////////////////////////////////////////JSON///////////////////////////////////////////////////////
-	// Crear un objeto FormData a partir del formulario
-	var formData = new FormData(form);
-	// Convertir el FormData en un objeto JSON
-	var json = JSON.stringify(Object.fromEntries(formData));
-	// Hacer algo con el objeto JSON
-    console.log(json);
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Comparacion para ver si hay algún campo del formulario vacío
+	verificar(event,formDataArray);
 	
 });
 
+// Funcion de comparación de las contraseñas
+function contrasenyas(obj,message){
 
-function verificar(event, campos, botones, check1, check2) {
-	//Iterar a través de los campos de texto
-	for (var i = 0; i < campos.length; i++) {
-		elem = campos[i];
-		var field = document.getElementById(elem);
-		//Si el campo está vacío, muestra mensaje de error
-		if (field.value === "") {
-			alert('There is an empty field in the form');
-			//prevenir el envío del formulario
-			event.preventDefault();
-			return
+	let val = Object.values(obj); 
+
+	let pass1 = Object.values(val[4]);
+	let pass2 = Object.values(val[5]);
+
+	if(pass1[0] === pass2[0]){
+		message.textContent = '';
+	}else{
+		message.textContent = 'Passwords are not the same';
+		message.setAttribute('style', 'color:red');
+	}
+}
+
+// Funcion de verificación de los elementos del registro
+function verificar(event,obj) {
+
+	let valores = Object.values(obj); 
+	var longitud = valores.length;
+	var errorMensaje = "";
+	//console.log(Object.values(valores[13]))
+	
+	for(let i=0; i<= (longitud-2); i++){
+
+		let casilla = Object.values(valores[i]);
+
+		if(i<=5){
+			if(casilla == ""){
+				alert('There is an empty field in the form');
+				//prevenir el envío del formulario
+				event.preventDefault();
+				return
+			}
+		}else{
+			if(i<=8){
+				if(casilla != "" ){
+					count_gender = count_gender + 1;
+				}
+			}else{
+				if(i<=11){
+					if(casilla != "" ){
+						count_interests = count_interests + 1;
+					}
+				}else{
+						if(casilla != "" ){
+							count_news = count_news + 1;
+						}
+				}
+			}
 		}
 	}
 
-	radio_check(event,botones,check1,check2);
-}
-
-function radio_check(event,botones,check1,check2){
-	const noneChecked_boton = Array.prototype.every.call(botones, botones => !botones.checked); // devuelve true si ningún elemento de entrada de tipo radio ha sido marcado
-	const noneChecked_check1 = Array.prototype.every.call(check1, check1 => !check1.checked); // devuelve true si ningún elemento de entrada de tipo checkbox ha sido marcado
-	const noneChecked_check2 = Array.prototype.every.call(check2, check2 => !check2.checked); // devuelve true si ningún elemento de entrada de tipo checkbox ha sido marcado
-
-	if (noneChecked_boton == true) {
+	if((count_gender == 0) || (count_interests == 0) || (count_news == 0)){
 		alert('There is an empty field in the form');
-		event.preventDefault();
-		return
-	}
-	if (noneChecked_check1 == true) {
-		alert('There is an empty field in the form');
-		event.preventDefault();
-		return
-	}
-	if (noneChecked_check2 == true) {
-		alert('There is an empty field in the form');
+		//prevenir el envío del formulario
 		event.preventDefault();
 		return
 	}
 
-	//Si están todos los campos rellenados, se envía el formulario
-	alert('Form successfully submitted')
-	count=1;
+	// Si está todo completo, se envía el formulario
+	alert('Form succesfully submitted');
+	//prevenir el envío del formulario
 	enviarFormularioServidor();  // Una vez comprobados los campos, se envía el formulario al servidor flask
 	event.preventDefault();
 	return
