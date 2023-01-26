@@ -97,42 +97,41 @@
 						<br>
 						<label for="password">Confirm your password</label>
 						<br>
-						<input type="password" id="confirm-password" name="confirm-password">
+						<input type="password" id="confirmpassword" name="confirmpassword">
 						<br>
 						<div id="igualdad"></div>
 						<br>
 						<label for="gender">Gender</label>
 						<br>
-						<input type="radio" id="male" name="gender" value="male">
+						<input type="radio" id="male" name="gender" value="" onclick="this.value=this.id">
 						<label for="male">Male</label>
 						<br>
-						<input type="radio" id="female" name="gender" value="female">
+						<input type="radio" id="female" name="gender" value="" onclick="this.value=this.id">
 						<label for="female">Female</label>
 						<br>
-						<input type="radio" id="other" name="gender" value="other">
+						<input type="radio" id="other" name="gender" value="" onclick="this.value=this.id">
 						<label for="other">Other</label>
 						<br>
 						<label for="intereses">User interests</label>
 						<br>
-						<input type="checkbox" class="inter" id="educativo" name="intereses" value="educativo">
+						<input type="checkbox" class="inter" id="educativo" name="intereses" value="" onclick="this.value=this.id">
 						<label for="educativo">Educational</label>
 						<br>
-						<input type="checkbox" class="inter"  id="laboral" name="intereses" value="laboral">
+						<input type="checkbox" class="inter"  id="laboral" name="intereses" value="" onclick="this.value=this.id">
 						<label for="laboral">Labour</label>
 						<br>
-						<input type="checkbox" class="inter"  id="casual" name="intereses" value="casual">
+						<input type="checkbox" class="inter"  id="casual" name="intereses" value="" onclick="this.value=this.id">
 						<label for="casual">Leisure</label>
 						<br>
-						<input type="checkbox" class="otro" id="suscripcion" name="newsletter" value="suscripcion">
+						<input type="checkbox" class="otro" id="suscripcion" name="newsletter" value="" onclick="this.value=this.id">
 						<label for="suscripcion">Yes, I want to subscribe to the newsletter</label>
 						<br>
-						<input type="checkbox" class="otro" id="ofertas" name="newsletter" value="ofertas">
+						<input type="checkbox" class="otro" id="ofertas" name="newsletter" value="" onclick="this.value=this.id">
 						<label for="ofertas">Yes, I would like to receive offers about products, events etc.</label>
 						<br>
 						<p>By registering, I accept the <em><b>Conditions of service</b></em> and the <em><b>Privacy policy</b></em>.</p>
 						<br>
 						<input type="submit" id="boton_envio" value="Create account">
-						<div id="vacio"></div>
 					</form>
 					
 					<!-- En este iframe se mostrará la respuesta del servidor flask! -->
