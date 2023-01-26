@@ -45,3 +45,9 @@ def add_cors_headers(response):
     response.headers.add('Access-Control-Allow-Methods', 'GET, POST')
     
     return response
+
+
+# Ejecutar app
+app.run(host='127.0.0.1', port=5000, debug=True)
+
+
