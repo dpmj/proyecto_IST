@@ -10,15 +10,15 @@
 
 
 // Meses del año
-var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 
               'September', 'October', 'November', 'December'];
 
 // Días de la semana
-var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // Número total de posiciones en la rejilla: 
 // 7 días/semana * 6 semanas (caso en el que un mes comience y termine a mitad de semana)
-var grid_size = 42;
+const grid_size = 42;
 
 // Fecha actual mostrada en el calendario
 var current_shown_date = {
@@ -627,7 +627,7 @@ function loadDefaultTasks()
 
 /* Vector de objetos de javascript. Se muestran al cargar la página */
 
-var default_tasks = [
+const default_tasks = [
     {
         title: "Poner lavavajillas",
         date: "2023/01/20",
