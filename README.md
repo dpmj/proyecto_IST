@@ -21,4 +21,4 @@
 3. En la carpeta `flask/`, ejecutar el comando `python app.py`
 4. Listo
 
-**Nota: el servidor flask no funciona en el entorno de github-pages**
+**Nota: el servidor flask no funciona en el entorno de github-pages, sólo en local.**
