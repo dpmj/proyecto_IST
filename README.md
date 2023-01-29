@@ -16,8 +16,9 @@
 
 ## Cómo ejecutar el servidor de Flask
 
-1. Instalar flask
-2. En la carpeta `flask/`, ejecutar el comando `flask --app app.py --debug run`
-3. Listo
+1. Instalar python versión >= 3.6
+2. Instalar flask
+3. En la carpeta `flask/`, ejecutar el comando `python app.py`
+4. Listo
 
-
+**Nota: el servidor flask no funciona en el entorno de github-pages, sólo en local.**

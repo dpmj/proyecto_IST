@@ -20,8 +20,6 @@ def form_result():
     # datos sacados por consola de Flask para demostrar que los tenemos
     print(f"\n\nNUEVO CLIENTE REGISTRADO:\n\n{request_json}\n\n")
 
-
-
     # Generar respuesta en el cliente
     return render_template("form_response.html", 
                            email=request_json["email"],
