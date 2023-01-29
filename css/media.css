@@ -1,7 +1,7 @@
 .principal div{
 	display: flex;
 	flex-direction: row;
-	align-items: stretch;
+	align-items: flex-start;
   	text-align: center;
 }
 
@@ -30,4 +30,5 @@ article > div > article {
 	margin: 15px;
     box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.5);
 	background-color: white;
+	width: 100%;
 }
